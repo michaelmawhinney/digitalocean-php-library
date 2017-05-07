@@ -4,7 +4,7 @@ DigitalOcean API v2 PHP Library is a set of PHP classes designed to interact wit
 
 ## How to use
 
-You simply need to include or require the do-php-library.php file in your code and instantiate the DigitalOcean classes with your access token.
+You simply need to include or require `do-php-library.php` and provide the DigitalOcean classes with your access token.
 
 ## Code Example
 
@@ -13,7 +13,7 @@ You simply need to include or require the do-php-library.php file in your code a
 ```
 <?php
 
-require( __DIR__ . DIRECTORY_SEPARATOR . "do-php-library.php");
+require "do-php-library.php";
 
 $client = new DropletClient([
     'access_token' => '783a8a829cafa40f75f4f71bf2a961dcdb2d63448317c512fb4d07f2dd8d1bd0' // REQUIRED
@@ -29,3 +29,59 @@ var_dump( $result );
 
 ?>
 ```
+
+## Classes
+
+### AccountClient
+
+### ActionsClient
+
+### BlockStorageClient
+
+### BlockStorageActionsClient
+
+### CertificatesClient
+
+### DomainsClient
+
+### DomainRecordsClient
+
+### DropletClient
+
+*`createDroplet(array $attributes)`
+*`deleteDropletById(int $id)`
+*`deleteDropletsByTag(string $tag_name)`
+*`getDropletActionsById(int $id)`
+*`getDropletBackupsById(int $id)`
+*`getDropletById(int $id)`
+*`getDropletByTag(string $tag_name)`
+*`getDropletsByTag(string $tag_name)`
+*`getDropletKernelsById(int $id)`
+*`getDropletNeighbors()`
+*`getDropletNeighborsById(int $id)`
+*`getDroplets()`
+*`getDropletSnapshotsById(int $id)`
+*`getImages()`
+
+### DropletActionsClient
+
+### ImagesClient
+
+### ImageActionsClient
+
+### LoadBalancersClient
+
+### SnapshotsClient
+
+### SSHKeysClient
+
+### RegionsClient
+
+### SizesClient
+
+### FloatingIPsClient
+
+### FloatingIPActionsClient
+
+### TagsClient
+

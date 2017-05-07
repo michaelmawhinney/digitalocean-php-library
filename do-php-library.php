@@ -71,14 +71,20 @@ class DropletClient extends DigitalOceanClient
         return $response_array;
     }
 
-    public function createDroplet(array $args)
+    private function getLastHttpResponse()
     {
-        if( !isset($args['name']) || !isset($args['region']) || !isset($args['size']) || !isset($args['image']) ) {
+        $info = curl_getinfo($this->curl_handle);
+        return $info["http_code"];
+    }
+
+    public function createDroplet(array $attributes)
+    {
+        if( !isset($attributes['name']) || !isset($attributes['region']) || !isset($attributes['size']) || !isset($attributes['image']) ) {
             throw new Exception("User Error: missing required attribute for Droplet creation");
             return false;
         }
 
-        $response = $this->doCurl("POST", "droplets", $args);
+        $response = $this->doCurl("POST", "droplets", $attributes);
         return $response;
     }
 
@@ -170,11 +176,5 @@ class DropletClient extends DigitalOceanClient
     {
         $response = $this->doCurl("GET", "images");
         return $response;
-    }
-
-    public function getLastHttpResponse()
-    {
-        $info = curl_getinfo($this->curl_handle);
-        return $info["http_code"];
     }
 }
