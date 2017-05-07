@@ -7,14 +7,28 @@
 
 class DigitalOceanClient
 {
-    const BASE_URL = "https://api.digitalocean.com/v2/";
-    protected $access_token;
+    const API_BASE_URL = "https://api.digitalocean.com/v2/";
+    public $Account;
+    public $Actions;
+    public $Droplets;
+
+    public function __construct(array $config)
+    {
+        $this->Account = new AccountClient($config);
+        $this->Actions = new ActionsClient($config);
+        $this->Droplets = new DropletsClient($config);
+    }
+}
+
+class EndPointClient
+{
     protected $curl_handle;
+    protected $access_token;
     protected $html_headers;
 
-    protected function init(array $args)
+    protected function init(array $config)
     {
-        $this->access_token = $args["access_token"];
+        $this->access_token = $config["access_token"];
         $this->html_headers[] = "Content-type: application/json";
         $this->html_headers[] = "Authorization: Bearer " . $this->access_token;
     }
@@ -23,7 +37,7 @@ class DigitalOceanClient
     {
         $this->curl_handle = curl_init();
         curl_setopt($this->curl_handle, CURLOPT_HTTPHEADER, $this->html_headers);
-        curl_setopt($this->curl_handle, CURLOPT_URL, DigitalOceanClient::BASE_URL.$endpoint);
+        curl_setopt($this->curl_handle, CURLOPT_URL, DigitalOceanClient::API_BASE_URL.$endpoint);
         curl_setopt($this->curl_handle, CURLOPT_RETURNTRANSFER, true);
 
         switch($method) {
@@ -70,11 +84,11 @@ class DigitalOceanClient
     }
 }
 
-class AccountClient extends DigitalOceanClient
+class AccountClient extends EndpointClient
 {
-    public function __construct(array $args)
+    public function __construct(array $config)
     {
-        $this->init($args);
+        $this->init($config);
     }
 
     public function getUserInformation()
@@ -84,11 +98,11 @@ class AccountClient extends DigitalOceanClient
     }
 }
 
-class ActionsClient extends DigitalOceanClient
+class ActionsClient extends EndpointClient
 {
-    public function __construct(array $args)
+    public function __construct(array $config)
     {
-        $this->init($args);
+        $this->init($config);
     }
 
     public function getActions()
@@ -104,11 +118,11 @@ class ActionsClient extends DigitalOceanClient
     }
 }
 
-class DropletClient extends DigitalOceanClient
+class DropletsClient extends EndpointClient
 {
-    public function __construct(array $args)
+    public function __construct(array $config)
     {
-        $this->init($args);
+        $this->init($config);
     }
 
     public function createDroplet(array $attributes)
