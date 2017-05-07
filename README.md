@@ -48,20 +48,20 @@ var_dump( $result );
 
 ### DropletClient
 
-*`createDroplet(array $attributes)`
-*`deleteDropletById(int $id)`
-*`deleteDropletsByTag(string $tag_name)`
-*`getDropletActionsById(int $id)`
-*`getDropletBackupsById(int $id)`
-*`getDropletById(int $id)`
-*`getDropletByTag(string $tag_name)`
-*`getDropletsByTag(string $tag_name)`
-*`getDropletKernelsById(int $id)`
-*`getDropletNeighbors()`
-*`getDropletNeighborsById(int $id)`
-*`getDroplets()`
-*`getDropletSnapshotsById(int $id)`
-*`getImages()`
+* `createDroplet(array $attributes)`
+* `deleteDropletById(int $id)`
+* `deleteDropletsByTag(string $tag_name)`
+* `getDropletActionsById(int $id)`
+* `getDropletBackupsById(int $id)`
+* `getDropletById(int $id)`
+* `getDropletByTag(string $tag_name)`
+* `getDropletsByTag(string $tag_name)`
+* `getDropletKernelsById(int $id)`
+* `getDropletNeighbors()`
+* `getDropletNeighborsById(int $id)`
+* `getDroplets()`
+* `getDropletSnapshotsById(int $id)`
+* `getImages()`
 
 ### DropletActionsClient
 
