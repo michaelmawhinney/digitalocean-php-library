@@ -10,13 +10,45 @@ class DigitalOceanClient
     const API_BASE_URL = "https://api.digitalocean.com/v2/";
     public $Account;
     public $Actions;
+    public $BlockStorage;
+    public $BlockStorageActions;
+    public $Certificates;
+    public $Domains;
+    public $DomainRecords;
     public $Droplets;
+    public $DropletActions;
+    public $Images;
+    public $ImageActions;
+    public $LoadBalancers;
+    public $Snapshots;
+    public $SSHKeys;
+    public $Regions;
+    public $Sizes;
+    public $FloatingIPs;
+    public $FloatingIPActions;
+    public $Tags;
 
     public function __construct(array $config)
     {
         $this->Account = new AccountClient($config);
         $this->Actions = new ActionsClient($config);
+        $this->BlockStorage = new BlockStorageClient($config);
+        $this->BlockStorageActions = new BlockStorageActionsClient($config);
+        $this->Certificates = new CertificatesClient($config);
+        $this->Domains = new DomainsClient($config);
+        $this->DomainRecords = new DomainRecordsClient($config);
         $this->Droplets = new DropletsClient($config);
+        $this->DropletActions = new DropletActionsClient($config);
+        $this->Images = new ImagesClient($config);
+        $this->ImageActions = new ImageActionsClient($config);
+        $this->LoadBalancers = new LoadBalancersClient($config);
+        $this->Snapshots = new SnapshotsClient($config);
+        $this->SSHKeys = new SSHKeysClient($config);
+        $this->Regions = new RegionsClient($config);
+        $this->Sizes = new SizesClient($config);
+        $this->FloatingIPs = new FloatingIPsClient($config);
+        $this->FloatingIPActions = new FloatingIPActionsClient($config);
+        $this->Tags = new TagsClient($config);
     }
 }
 
@@ -115,6 +147,44 @@ class ActionsClient extends EndpointClient
     {
         $response = $this->doCurl("GET", "actions/$id");
         return $response;       
+    }
+}
+
+class BlockStorageClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class BlockStorageActionsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class CertificatesClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+class DomainsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+class DomainRecordsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
     }
 }
 
@@ -224,5 +294,93 @@ class DropletsClient extends EndpointClient
     {
         $response = $this->doCurl("GET", "images");
         return $response;
+    }
+}
+
+class DropletActionsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class ImagesClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class ImageActionsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class LoadBalancersClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class SnapshotsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class SSHKeysClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class RegionsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class SizesClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class FloatingIPsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class FloatingIPActionsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+}
+
+class TagsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
     }
 }
