@@ -136,12 +136,6 @@ class DropletClient extends DigitalOceanClient
         return $response;
     }
 
-    public function getDropletsByTag(string $tag_name)
-    {
-        $response = $this->doCurl("GET", "droplets?tag_name=$tag_name");
-        return $response;
-    }
-
     public function getDropletKernelsById(int $id)
     {
         $response = $this->doCurl("GET", "droplets/$id/kernels");
@@ -163,6 +157,12 @@ class DropletClient extends DigitalOceanClient
     public function getDroplets()        
     {
         $response = $this->doCurl("GET", "droplets");
+        return $response;
+    }
+
+    public function getDropletsByTag(string $tag_name)
+    {
+        $response = $this->doCurl("GET", "droplets?tag_name=$tag_name");
         return $response;
     }
 

@@ -55,11 +55,11 @@ var_dump( $result );
 * `getDropletBackupsById(int $id)`
 * `getDropletById(int $id)`
 * `getDropletByTag(string $tag_name)`
-* `getDropletsByTag(string $tag_name)`
 * `getDropletKernelsById(int $id)`
 * `getDropletNeighbors()`
 * `getDropletNeighborsById(int $id)`
 * `getDroplets()`
+* `getDropletsByTag(string $tag_name)`
 * `getDropletSnapshotsById(int $id)`
 * `getImages()`
 
