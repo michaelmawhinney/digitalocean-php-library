@@ -351,6 +351,12 @@ class RegionsClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function getRegions()
+    {
+        $response = $this->doCurl("GET", "regions");
+        return $response;
+    }
 }
 
 class SizesClient extends EndpointClient
@@ -358,6 +364,12 @@ class SizesClient extends EndpointClient
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function getSizes()
+    {
+        $response = $this->doCurl("GET", "sizes");
+        return $response;
     }
 }
 
