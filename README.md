@@ -34,7 +34,12 @@ var_dump( $result );
 
 ### AccountClient
 
+* `getUserInformation()`
+
 ### ActionsClient
+
+* `getActions()`
+* `getActionsById(int $id)`
 
 ### BlockStorageClient
 

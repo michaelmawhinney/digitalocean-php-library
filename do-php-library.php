@@ -97,7 +97,7 @@ class ActionsClient extends DigitalOceanClient
         return $response;
     }
 
-    public function getActionById($id)
+    public function getActionById(int $id)
     {
         $response = $this->doCurl("GET", "actions/$id");
         return $response;       
