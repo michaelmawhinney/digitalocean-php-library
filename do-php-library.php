@@ -7,48 +7,53 @@
 
 class DigitalOceanClient
 {
-    const BASE_URL = "https://api.digitalocean.com/v2/";
-    private $access_token;
-    private $curl_handle;
-    private $html_headers;
+    const API_BASE_URL = "https://api.digitalocean.com/v2/";
+    public $Account;
+    public $Actions;
+    public $Droplets;
+
+    public function __construct(array $config)
+    {
+        $this->Account = new AccountClient($config);
+        $this->Actions = new ActionsClient($config);
+        $this->Droplets = new DropletsClient($config);
+    }
 }
 
-class DropletClient extends DigitalOceanClient
+class EndPointClient
 {
-    public function __construct(array $args)
+    protected $curl_handle;
+    protected $access_token;
+    protected $html_headers;
+
+    protected function init(array $config)
     {
-        $this->access_token = $args["access_token"];
+        $this->access_token = $config["access_token"];
         $this->html_headers[] = "Content-type: application/json";
         $this->html_headers[] = "Authorization: Bearer " . $this->access_token;
+    }
+
+    protected function doCurl(string $method, string $endpoint, array $args = null)
+    {
         $this->curl_handle = curl_init();
-    }
-
-    public function __destruct()
-    {
-        curl_close($this->curl_handle);
-    }
-
-    private function doCurl(string $method, string $endpoint, array $args = null)
-    {
-        curl_reset($this->curl_handle);
         curl_setopt($this->curl_handle, CURLOPT_HTTPHEADER, $this->html_headers);
-        curl_setopt($this->curl_handle, CURLOPT_URL, DigitalOceanClient::BASE_URL.$endpoint);
+        curl_setopt($this->curl_handle, CURLOPT_URL, DigitalOceanClient::API_BASE_URL.$endpoint);
         curl_setopt($this->curl_handle, CURLOPT_RETURNTRANSFER, true);
 
         switch($method) {
             case "DELETE":
+            case "PUT":
                 curl_setopt($this->curl_handle, CURLOPT_CUSTOMREQUEST, $method);
                 curl_setopt($this->curl_handle, CURLOPT_POSTFIELDS, json_encode($args));
                 break;
             case "GET":
                 break;
             case "HEAD":
+                curl_setopt($this->curl_handle, CURLOPT_NOBODY, true);
                 break;
             case "POST":
                 curl_setopt($this->curl_handle, CURLOPT_POST, true);
                 curl_setopt($this->curl_handle, CURLOPT_POSTFIELDS, json_encode($args));
-                break;
-            case "PUT":
                 break;
             default:
                 throw new Exception("Library Error: Unknown HTTP Verb: $method");
@@ -68,13 +73,56 @@ class DropletClient extends DigitalOceanClient
             return false;
         }
 
+        curl_close($this->curl_handle);
         return $response_array;
     }
 
-    private function getLastHttpResponse()
+    protected function getLastHttpResponse()
     {
         $info = curl_getinfo($this->curl_handle);
         return $info["http_code"];
+    }
+}
+
+class AccountClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+
+    public function getUserInformation()
+    {
+        $response = $this->doCurl("GET", "account");
+        return $response;
+    }
+}
+
+class ActionsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+
+    public function getActions()
+    {
+        $response = $this->doCurl("GET", "actions");
+        return $response;
+    }
+
+    public function getActionById(int $id)
+    {
+        $response = $this->doCurl("GET", "actions/$id");
+        return $response;       
+    }
+}
+
+class DropletsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
     }
 
     public function createDroplet(array $attributes)

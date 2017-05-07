@@ -15,12 +15,11 @@ You simply need to include or require `do-php-library.php` and provide the Digit
 
 require "do-php-library.php";
 
-$client = new DropletClient([
-    'access_token' => '783a8a829cafa40f75f4f71bf2a961dcdb2d63448317c512fb4d07f2dd8d1bd0' // REQUIRED
-]);
+$config["access_token"] = "783a8a829cafa40f75f4f71bf2a961dcdb2d63448317c512fb4d07f2dd8d1bd0";
+$client = new DigitalOceanClient($config);
 
 try {
-    $result = $client->getDroplets();
+    $result = $client->Droplets->getDroplets();
 } catch(Exception $e) {
     die( 'Caught exception: ' . $e->getMessage() );
 }
@@ -34,7 +33,12 @@ var_dump( $result );
 
 ### AccountClient
 
+* `getUserInformation()`
+
 ### ActionsClient
+
+* `getActions()`
+* `getActionsById(int $id)`
 
 ### BlockStorageClient
 
