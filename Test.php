@@ -1,5 +1,7 @@
 <?php
 
+require( __DIR__ . DIRECTORY_SEPARATOR . "do-php-library.php");
+
 class Test extends PHPUnit_Framework_TestCase
 {
     public function testAccountClientGetUserInformation()
