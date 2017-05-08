@@ -650,7 +650,7 @@ class TagsClient extends EndpointClient
         $this->init($config);
     }
 
-    public function createTag($string tag_name)
+    public function createTag(string $tag_name)
     {
         $attributes["tag_name"] = $tag_name;
         $response = $this->doCurl("POST", "tags", $attributes);
