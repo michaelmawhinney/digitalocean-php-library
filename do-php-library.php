@@ -106,6 +106,7 @@ abstract class EndpointClient
         }
 
         curl_close($this->curl_handle);
+        $this->curl_handle = null;
         return $response_array;
     }
 
