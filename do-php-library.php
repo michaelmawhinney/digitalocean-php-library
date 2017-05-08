@@ -52,7 +52,7 @@ class DigitalOceanClient
     }
 }
 
-class EndpointClient
+abstract class EndpointClient
 {
     protected $curl_handle;
     protected $access_token;
@@ -156,6 +156,66 @@ class BlockStorageClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function getVolumes()
+    {
+        $response = $this->doCurl("GET", "volumes");
+        return $response;
+    }
+
+    public function createVolume(array $attributes)
+    {
+        $response = $this->doCurl("POST", "volumes", $attributes);
+        return $response;
+    }
+
+    public function getVolumeById(int $id)
+    {
+        $response = $this->doCurl("GET", "volumes/$id");
+        return $response;
+    }
+
+    public function getVolumeByName(string $drive_name, string $region)
+    {
+        $response = $this->doCurl("GET", "volumes?name=$drive_name&reion=$region");
+        return $response;
+    }
+
+    public function getSnapshotsByVolumeId(int $id)
+    {
+        $response = $this->doCurl("GET", "volumes/$id/snapshots");
+        return $response;
+    }
+
+    public function createSnapshotByVolumeId(int $id, array $attributes)
+    {
+        $response = $this->doCurl("POST", "volumes/$id/snapshots", $attributes);
+        return $response;
+    }
+
+    public function deleteVolumeById(int $id)
+    {
+        $response = $this->doCurl("DELETE", "volumes/$id");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: HTTP code " . $response);
+            return false;
+        }
+    }
+
+    public function deleteVolumeByName(string $drive_name, string $region)
+    {
+        $this->doCurl("DELETE", "volumes?name=$drive_name&region=$region");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: HTTP code " . $response);
+            return false;
+        }
+    }
 }
 
 class BlockStorageActionsClient extends EndpointClient
@@ -197,11 +257,6 @@ class DropletsClient extends EndpointClient
 
     public function createDroplet(array $attributes)
     {
-        if( !isset($attributes['name']) || !isset($attributes['region']) || !isset($attributes['size']) || !isset($attributes['image']) ) {
-            throw new Exception("User Error: missing required attribute for Droplet creation");
-            return false;
-        }
-
         $response = $this->doCurl("POST", "droplets", $attributes);
         return $response;
     }
