@@ -19,7 +19,7 @@ class DigitalOceanClient
     public $DropletActions;
     public $Images;
     public $ImageActions;
-    //public $LoadBalancers;
+    public $LoadBalancers;
     //public $Snapshots;
     public $SSHKeys;
     public $Regions;
@@ -41,7 +41,7 @@ class DigitalOceanClient
         $this->DropletActions = new DropletActionsClient($config);
         $this->Images = new ImagesClient($config);
         $this->ImageActions = new ImageActionsClient($config);
-        //$this->LoadBalancers = new LoadBalancersClient($config);
+        $this->LoadBalancers = new LoadBalancersClient($config);
         //$this->Snapshots = new SnapshotsClient($config);
         $this->SSHKeys = new SSHKeysClient($config);
         $this->Regions = new RegionsClient($config);
@@ -710,76 +710,77 @@ class LoadBalancersClient extends EndpointClient
         $this->init($config);
     }
 
-    public function createLoadBalancer()
+    // need to ensure this can also create load balancers via tag
+    public function createLoadBalancer(array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "load_balancers", $attributes);
+        return $response;
     }
 
-    public function getLoadBalancer()
+    public function getLoadBalancer(int $load_balancer_id)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "load_balancers/$load_balancer_id");
+        return $response;
     }
 
     public function getLoadBalancers()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "load_balancers");
+        return $response;
     }
 
-    public function updateLoadBalancer()
+    public function updateLoadBalancer(array $attributes)
     {
-//        $response = $this->doCurl("PUT", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("PUT", "load_balancers", $attributes);
+        return $response;
     }
 
-    public function deleteLoadBalancer()
+    public function deleteLoadBalancer(int $load_balancer_id)
     {
-//        $this->doCurl("DELETE", "");
-//        $response = $this->getLastHttpResponse();
-//        if ($response >= 200 && $response < 300) {
-//            return true;
-//        } else {
-//            throw new Exception("API Error: " . $response );
-//            return false;
-//        }
+        $this->doCurl("DELETE", "load_balancers/$load_balancer_id", $);
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 
-    public function addDroplets()
+    public function addDroplets(int $load_balancer_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "load_balancers/$load_balancer_id/droplets", $attributes);
+        return $response;
     }
 
-    public function removeDroplets()
+    public function removeDroplets(int $load_balancer_id, array $attributes)
     {
-//        $this->doCurl("DELETE", "");
-//        $response = $this->getLastHttpResponse();
-//        if ($response >= 200 && $response < 300) {
-//            return true;
-//        } else {
-//            throw new Exception("API Error: " . $response );
-//            return false;
-//        }
+        $this->doCurl("DELETE", "load_balancers/$load_balancer_id/droplets", $attributes);
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 
-    public function addForwardingRules()
+    public function addForwardingRules(int $load_balancer_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "load_balancers/$load_balancer_id/forwarding_rules", $attributes);
+        return $response;
     }
 
-    public function removeForwardingRules()
+    public function removeForwardingRules(int $load_balancer_id, array $attributes)
     {
-//        $this->doCurl("DELETE", "");
-//        $response = $this->getLastHttpResponse();
-//        if ($response >= 200 && $response < 300) {
-//            return true;
-//        } else {
-//            throw new Exception("API Error: " . $response );
-//            return false;
-//        }
+        $this->doCurl("DELETE", "load_balancers/$load_balancer_id/forwarding_rules", $attributes);
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 }
 

@@ -146,6 +146,16 @@ var_dump( $result );
 
 ### LoadBalancersClient
 
+* `function createLoadBalancer(array $attributes)`
+* `function getLoadBalancer(int $load_balancer_id)`
+* `function getLoadBalancers()`
+* `function updateLoadBalancer(array $attributes)`
+* `function deleteLoadBalancer(int $load_balancer_id)`
+* `function addDroplets(int $load_balancer_id, array $attributes)`
+* `function removeDroplets(int $load_balancer_id, array $attributes)`
+* `function addForwardingRules(int $load_balancer_id, array $attributes)`
+* `function removeForwardingRules(int $load_balancer_id, array $attributes)`
+
 ### SnapshotsClient
 
 ### SSHKeysClient
