@@ -104,6 +104,15 @@ var_dump( $result );
 
 ### SSHKeysClient
 
+* `getKeys()`
+* `createKey(array $attributes)`
+* `getKeyById(int $key_id)`
+* `getKeyByFingerprint(string $key_fingerprint)`
+* `updateKeyById(int $key_id, array $attributes)`
+* `updateKeyByFingerprint(string $key_fingerprint, array $attributes)`
+* `deleteKeyById(int $key_id)` or `destroyKeyById(int $key_id)`
+* `deleteKeyByFingerprint(string $key_fingerprint)` or `destroyKeyByFingerprint(string $key_fingerprint)`
+
 ### RegionsClient
 
 * `getRegions()`

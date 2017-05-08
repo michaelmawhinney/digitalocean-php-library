@@ -11,44 +11,44 @@ class DigitalOceanClient
     public $Account;
     public $Actions;
     public $BlockStorage;
-    public $BlockStorageActions;
-    public $Certificates;
+    //public $BlockStorageActions;
+    //public $Certificates;
     public $Domains;
     public $DomainRecords;
     public $Droplets;
-    public $DropletActions;
-    public $Images;
-    public $ImageActions;
-    public $LoadBalancers;
-    public $Snapshots;
-    public $SSHKeys;
+    //public $DropletActions;
+    //public $Images;
+    //public $ImageActions;
+    //public $LoadBalancers;
+    //public $Snapshots;
+    //public $SSHKeys;
     public $Regions;
     public $Sizes;
-    public $FloatingIPs;
-    public $FloatingIPActions;
-    public $Tags;
+    //public $FloatingIPs;
+    //public $FloatingIPActions;
+    //public $Tags;
 
     public function __construct(array $config)
     {
         $this->Account = new AccountClient($config);
         $this->Actions = new ActionsClient($config);
         $this->BlockStorage = new BlockStorageClient($config);
-        $this->BlockStorageActions = new BlockStorageActionsClient($config);
-        $this->Certificates = new CertificatesClient($config);
+        //$this->BlockStorageActions = new BlockStorageActionsClient($config);
+        //$this->Certificates = new CertificatesClient($config);
         $this->Domains = new DomainsClient($config);
         $this->DomainRecords = new DomainRecordsClient($config);
         $this->Droplets = new DropletsClient($config);
-        $this->DropletActions = new DropletActionsClient($config);
-        $this->Images = new ImagesClient($config);
-        $this->ImageActions = new ImageActionsClient($config);
-        $this->LoadBalancers = new LoadBalancersClient($config);
-        $this->Snapshots = new SnapshotsClient($config);
-        $this->SSHKeys = new SSHKeysClient($config);
+        //$this->DropletActions = new DropletActionsClient($config);
+        //$this->Images = new ImagesClient($config);
+        //$this->ImageActions = new ImageActionsClient($config);
+        //$this->LoadBalancers = new LoadBalancersClient($config);
+        //$this->Snapshots = new SnapshotsClient($config);
+        //$this->SSHKeys = new SSHKeysClient($config);
         $this->Regions = new RegionsClient($config);
         $this->Sizes = new SizesClient($config);
-        $this->FloatingIPs = new FloatingIPsClient($config);
-        $this->FloatingIPActions = new FloatingIPActionsClient($config);
-        $this->Tags = new TagsClient($config);
+        //$this->FloatingIPs = new FloatingIPsClient($config);
+        //$this->FloatingIPActions = new FloatingIPActionsClient($config);
+        //$this->Tags = new TagsClient($config);
     }
 }
 
@@ -270,6 +270,7 @@ class DomainsClient extends EndpointClient
         }
     }
 }
+
 class DomainRecordsClient extends EndpointClient
 {
     public function __construct(array $config)
@@ -463,6 +464,81 @@ class SSHKeysClient extends EndpointClient
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function getKeys()
+    {
+        $response = $this->doCurl("GET", "account/keys");
+        return $response;
+    }
+
+    public function createKey(array $attributes)
+    {
+        $response = $this->doCurl("POST", "account/keys", $attributes);
+        return $response;
+    }
+
+    public function getKeyById(int $key_id)
+    {
+        $response = $this->doCurl("GET", "account/keys/$key_id");
+        return $response;
+    }
+
+    public function getKeyByFingerprint(string $key_fingerprint)
+    {
+        $response = $this->doCurl("GET", "account/keys/$key_fingerprint");
+        return $response;
+    }
+
+    public function updateKeyById(int $key_id, array $attributes)
+    {
+        $response = $this->doCurl("PUT", "account/keys/$key_id", $attributes);
+        return $response;
+    }
+
+    public function updateKeyByFingerprint(string $key_fingerprint, array $attributes)
+    {
+        $response = $this->doCurl("PUT", "account/keys/$key_fingerprint", $attributes);
+        return $response;
+    }
+
+    public function deleteKeyById(int $key_id)
+    {
+        $this->doCurl("DELETE", "account/keys/$key_id");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
+    }
+
+    public function deleteKeyByFingerprint(string $key_fingerprint)
+    {
+        $this->doCurl("DELETE", "account/keys/$key_fingerprint");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
+    }
+
+    /**
+     *  The API docs use the term "destroy" instead of "delete" for SSH keys.
+     *  These functions were created as aliases to avoid potential confusion.
+     */
+    public function destroyKeyById(int $key_id)
+    {
+        return $this->deleteKeyById($key_id);
+    }
+
+    public function destroyKeyByFingerprint(string $key_fingerprint)
+    {
+        return $this->deleteKeyByFingerprint($key_fingerprint);
+
     }
 }
 
