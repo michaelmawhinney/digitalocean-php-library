@@ -224,6 +224,34 @@ class BlockStorageActionsClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function attachVolumeById()
+    {
+    }
+
+    public function attachVolumeByName()
+    {
+    }
+
+    public function deleteVolumeById()
+    {
+    }
+
+    public function deleteVolumeByName()
+    {
+    }
+
+    public function resizeVolume()
+    {
+    }
+
+    public function getVolumeActions()
+    {
+    }
+
+    public function getVolumeAction()
+    {
+    }
 }
 
 class CertificatesClient extends EndpointClient
@@ -232,7 +260,24 @@ class CertificatesClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function createCertificate()
+    {
+    }
+
+    public function getCertificate()
+    {
+    }
+
+    public function getCertificates()
+    {
+    }
+
+    public function deleteCertificate()
+    {
+    }
 }
+
 class DomainsClient extends EndpointClient
 {
     public function __construct(array $config)
@@ -425,6 +470,78 @@ class DropletActionsClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function enableBackups()
+    {
+    }
+
+    public function disableBackups()
+    {
+    }
+
+    public function reboot()
+    {
+    }
+
+    public function powerCycle()
+    {
+    }
+
+    public function shutdown()
+    {
+    }
+
+    public function powerOff()
+    {
+    }
+
+    public function powerOn()
+    {
+    }
+
+    public function restore()
+    {
+    }
+
+    public function resetPassword()
+    {
+    }
+
+    public function resize()
+    {
+    }
+
+    public function rebuild()
+    {
+    }
+
+    public function rename()
+    {
+    }
+
+    public function changeKernel()
+    {
+    }
+
+    public function enableIPv6()
+    {
+    }
+
+    public function enablePrivateNetworking()
+    {
+    }
+
+    public function createSnapshot()
+    {
+    }
+
+    public function doActionByTag()
+    {
+    }
+
+    public function getAction()
+    {
+    }
 }
 
 class ImagesClient extends EndpointClient
@@ -433,6 +550,42 @@ class ImagesClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function getImages()
+    {
+    }
+
+    public function getDistributionImages()
+    {
+    }
+
+    public function getApplicationImages()
+    {
+    }
+
+    public function getUserImages()
+    {
+    }
+
+    public function getActions()
+    {
+    }
+
+    public function getImageById()
+    {
+    }
+
+    public function getImageBySlug()
+    {
+    }
+
+    public function updateImage()
+    {
+    }
+
+    public function deleteImage()
+    {
+    }
 }
 
 class ImageActionsClient extends EndpointClient
@@ -440,6 +593,18 @@ class ImageActionsClient extends EndpointClient
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function transferImage()
+    {
+    }
+
+    public function convertImageToSnapshot()
+    {
+    }
+
+    public function getAction()
+    {
     }
 }
 
@@ -456,6 +621,42 @@ class SnapshotsClient extends EndpointClient
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function createLoadBalancer()
+    {
+    }
+
+    public function getLoadBalancer()
+    {
+    }
+
+    public function getLoadBalancers()
+    {
+    }
+
+    public function updateLoadBalancer()
+    {
+    }
+
+    public function deleteLoadBalancer()
+    {
+    }
+
+    public function addDroplets()
+    {
+    }
+
+    public function removeDroplets()
+    {
+    }
+
+    public function addForwardingRules()
+    {
+    }
+
+    public function removeForwardingRules()
+    {
     }
 }
 
