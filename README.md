@@ -47,6 +47,15 @@ var_dump( $result );
 
 ### BlockStorageClient
 
+* `getVolumes()`
+* `createVolume(array $attributes)`
+* `getVolumeById(int $id)`
+* `getVolumeByName(string $drive_name, string $region)`
+* `getSnapshotsByVolumeId(int $id)`
+* `createSnapshotByVolumeId(int $id, array $attributes)`
+* `deleteVolumeById(int $id)`
+* `deleteVolumeByName(string $drive_name, string $region)`
+
 ### BlockStorageActionsClient
 
 ### CertificatesClient
