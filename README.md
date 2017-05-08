@@ -110,8 +110,8 @@ var_dump( $result );
 * `getKeyByFingerprint(string $key_fingerprint)`
 * `updateKeyById(int $key_id, array $attributes)`
 * `updateKeyByFingerprint(string $key_fingerprint, array $attributes)`
-* `deleteKeyById(int $key_id)`  __or__  `destroyKeyById(int $key_id)`
-* `deleteKeyByFingerprint(string $key_fingerprint)`  __or__  `destroyKeyByFingerprint(string $key_fingerprint)`
+* `deleteKeyById(int $key_id)` __or__ `destroyKeyById(int $key_id)`
+* `deleteKeyByFingerprint(string $key_fingerprint)` __or__ `destroyKeyByFingerprint(string $key_fingerprint)`
 
 ### RegionsClient
 
