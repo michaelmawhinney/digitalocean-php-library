@@ -62,7 +62,18 @@ var_dump( $result );
 
 ### DomainsClient
 
+* `getDomains()`
+* `createDomain(array $attributes)`
+* `getDomain(string $domain_name)`
+* `deleteDomain(string $domain_name)`
+
 ### DomainRecordsClient
+
+* `getDomainRecords(string $domain_name)`
+* `createDomainRecord(string $domain_name, array $attributes)`
+* `getDomainRecord(string $domain_name, int $record_id)`
+* `updateDomainRecord(string $domain_name, int $record_id, array $attributes)`
+* `deleteDomainRecord(string $domain_name, int $record_id)`
 
 ### DropletClient
 
