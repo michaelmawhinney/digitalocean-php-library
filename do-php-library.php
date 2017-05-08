@@ -737,7 +737,7 @@ class LoadBalancersClient extends EndpointClient
 
     public function deleteLoadBalancer(int $load_balancer_id)
     {
-        $this->doCurl("DELETE", "load_balancers/$load_balancer_id", $);
+        $this->doCurl("DELETE", "load_balancers/$load_balancer_id");
         $response = $this->getLastHttpResponse();
         if ($response >= 200 && $response < 300) {
             return true;
