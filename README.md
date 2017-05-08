@@ -158,6 +158,12 @@ var_dump( $result );
 
 ### SnapshotsClient
 
+* `function getSnapshots()`
+* `function getDropletSnapshot()`
+* `function getVolumeSnapshots()`
+* `function getSnapshotById(int $snapshot_id)`
+* `function deleteSnapshot(int $snapshot_id)`
+
 ### SSHKeysClient
 
 * `getKeys()`

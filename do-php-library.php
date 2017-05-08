@@ -20,7 +20,7 @@ class DigitalOceanClient
     public $Images;
     public $ImageActions;
     public $LoadBalancers;
-    //public $Snapshots;
+    public $Snapshots;
     public $SSHKeys;
     public $Regions;
     public $Sizes;
@@ -42,7 +42,7 @@ class DigitalOceanClient
         $this->Images = new ImagesClient($config);
         $this->ImageActions = new ImageActionsClient($config);
         $this->LoadBalancers = new LoadBalancersClient($config);
-        //$this->Snapshots = new SnapshotsClient($config);
+        $this->Snapshots = new SnapshotsClient($config);
         $this->SSHKeys = new SSHKeysClient($config);
         $this->Regions = new RegionsClient($config);
         $this->Sizes = new SizesClient($config);
@@ -793,38 +793,38 @@ class SnapshotsClient extends EndpointClient
 
     public function getSnapshots()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "snapshots");
+        return $response;
     }
 
-    public function getSnapshotByDroplet()
+    public function getDropletSnapshot()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "snapshots?resource_type=droplet");
+        return $response;
     }
 
-    public function getSnapshotsByVolume()
+    public function getVolumeSnapshots()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "snapshots?resource_type=volume");
+        return $response;
     }
 
-    public function getSnapshotById()
+    public function getSnapshotById(int $snapshot_id)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "snapshots/$snapshot_id");
+        return $response;
     }
 
-    public function deleteSnapshot()
+    public function deleteSnapshot(int $snapshot_id)
     {
-//        $this->doCurl("DELETE", "");
-//        $response = $this->getLastHttpResponse();
-//        if ($response >= 200 && $response < 300) {
-//            return true;
-//        } else {
-//            throw new Exception("API Error: " . $response );
-//            return false;
-//        }
+        $this->doCurl("DELETE", "snapshots/$snapshot_id");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 }
 
