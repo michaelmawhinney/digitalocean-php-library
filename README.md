@@ -1,10 +1,10 @@
-# do-php-library
+# digitalocean-php-library
 
-DigitalOcean API v2 PHP Library is a set of PHP classes designed to interact with the DigitalOcean API v2. The aim of this project is to create a simple library that can be included easily without Composer or any other autoloader.
+**DigitalOcean PHP Library** is a set of PHP classes designed to interact with the DigitalOcean API v2. The aim of this project is to create a simple library that can be included easily without an autoloader like Composer.
 
 ## Requirements
 
-* PHP 5.3 or higher, with `cURL` enabled
+* PHP 5.3+ with `cURL` enabled
 
 
 ## How to use
