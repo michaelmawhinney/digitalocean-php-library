@@ -121,9 +121,14 @@ var_dump( $result );
 
 * `getSizes()`
 
-### FloatingIPsClient
+### FloatingIpsClient
 
-### FloatingIPActionsClient
+* `getFloatingIps()`
+* `createFloatingIp(array $attributes)`
+* `getFloatingIp(string $ip_address)`
+* `deleteFloatingIp(string $ip_address)`
+
+### FloatingIpActionsClient
 
 ### TagsClient
 

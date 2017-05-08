@@ -21,11 +21,11 @@ class DigitalOceanClient
     //public $ImageActions;
     //public $LoadBalancers;
     //public $Snapshots;
-    //public $SSHKeys;
+    public $SSHKeys;
     public $Regions;
     public $Sizes;
-    //public $FloatingIPs;
-    //public $FloatingIPActions;
+    //public $FloatingIps;
+    //public $FloatingIpActions;
     //public $Tags;
 
     public function __construct(array $config)
@@ -43,11 +43,11 @@ class DigitalOceanClient
         //$this->ImageActions = new ImageActionsClient($config);
         //$this->LoadBalancers = new LoadBalancersClient($config);
         //$this->Snapshots = new SnapshotsClient($config);
-        //$this->SSHKeys = new SSHKeysClient($config);
+        $this->SSHKeys = new SSHKeysClient($config);
         $this->Regions = new RegionsClient($config);
         $this->Sizes = new SizesClient($config);
-        //$this->FloatingIPs = new FloatingIPsClient($config);
-        //$this->FloatingIPActions = new FloatingIPActionsClient($config);
+        //$this->FloatingIps = new FloatingIpsClient($config);
+        //$this->FloatingIpActions = new FloatingIpActionsClient($config);
         //$this->Tags = new TagsClient($config);
     }
 }
@@ -570,15 +570,45 @@ class SizesClient extends EndpointClient
     }
 }
 
-class FloatingIPsClient extends EndpointClient
+class FloatingIpsClient extends EndpointClient
 {
     public function __construct(array $config)
     {
         $this->init($config);
     }
+
+    public function getFloatingIps()
+    {
+        $response = $this->doCurl("GET", "floating_ips");
+        return $response;
+    }
+
+    public function createFloatingIp(array $attributes)
+    {
+        $response = $this->doCurl("POST", "floating_ips", $attributes);
+        return $response;
+    }
+
+    public function getFloatingIp(string $ip_address)
+    {
+        $response = $this->doCurl("GET", "floating_ips/$ip_address");
+        return $response;
+    }
+
+    public function deleteFloatingIp(string $ip_address)
+    {
+        $this->doCurl("DELETE", "floating_ips/$ip_address");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
+    }
 }
 
-class FloatingIPActionsClient extends EndpointClient
+class FloatingIpActionsClient extends EndpointClient
 {
     public function __construct(array $config)
     {
