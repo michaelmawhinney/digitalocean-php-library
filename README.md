@@ -128,6 +128,16 @@ var_dump( $result );
 
 ### ImagesClient
 
+* `function getImages()`
+* `function getDistributionImages()`
+* `function getApplicationImages()`
+* `function getUserImages()`
+* `function getActions(int $image_id)`
+* `function getImageById(int $image_id)`
+* `function getImageBySlug(string $image_slug)`
+* `function updateImage(int $image_id, array $attributes)`
+* `function deleteImage(int $image_id)`
+
 ### ImageActionsClient
 
 ### LoadBalancersClient

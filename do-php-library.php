@@ -16,8 +16,8 @@ class DigitalOceanClient
     public $Domains;
     public $DomainRecords;
     public $Droplets;
-    //public $DropletActions;
-    //public $Images;
+    public $DropletActions;
+    public $Images;
     //public $ImageActions;
     //public $LoadBalancers;
     //public $Snapshots;
@@ -38,8 +38,8 @@ class DigitalOceanClient
         $this->Domains = new DomainsClient($config);
         $this->DomainRecords = new DomainRecordsClient($config);
         $this->Droplets = new DropletsClient($config);
-        //$this->DropletActions = new DropletActionsClient($config);
-        //$this->Images = new ImagesClient($config);
+        $this->DropletActions = new DropletActionsClient($config);
+        $this->Images = new ImagesClient($config);
         //$this->ImageActions = new ImageActionsClient($config);
         //$this->LoadBalancers = new LoadBalancersClient($config);
         //$this->Snapshots = new SnapshotsClient($config);
@@ -618,62 +618,62 @@ class ImagesClient extends EndpointClient
 
     public function getImages()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images");
+        return $response;
     }
 
     public function getDistributionImages()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images?type=distribution");
+        return $response;
     }
 
     public function getApplicationImages()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images?type=application");
+        return $response;
     }
 
     public function getUserImages()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images?private=true");
+        return $response;
     }
 
-    public function getActions()
+    public function getActions(int $image_id)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images/$image_id/actions");
+        return $response;
     }
 
-    public function getImageById()
+    public function getImageById(int $image_id)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images/$image_id");
+        return $response;
     }
 
-    public function getImageBySlug()
+    public function getImageBySlug(string $image_slug)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images/$image_slug");
+        return $response;
     }
 
-    public function updateImage()
+    public function updateImage(int $image_id, array $attributes)
     {
-//        $response = $this->doCurl("PUT", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("PUT", "images/$image_id", $attributes);
+        return $response;
     }
 
-    public function deleteImage()
+    public function deleteImage(int $image_id)
     {
-//        $this->doCurl("DELETE", "");
-//        $response = $this->getLastHttpResponse();
-//        if ($response >= 200 && $response < 300) {
-//            return true;
-//        } else {
-//            throw new Exception("API Error: " . $response );
-//            return false;
-//        }
+        $this->doCurl("DELETE", "images/$image_id");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 }
 
