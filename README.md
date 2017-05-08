@@ -58,7 +58,20 @@ var_dump( $result );
 
 ### BlockStorageActionsClient
 
+* `attachVolumeById(int $volume_id, array $attributes)`
+* `attachVolumeByName(array $attributes)`
+* `deleteVolumeById(int $volume_id, array $attributes)`
+* `deleteVolumeByName(array $attributes)`
+* `resizeVolume(int $volume_id, array $attributes)`
+* `getVolumeActions(int $volume_id)`
+* `getVolumeAction(int $volume_id, int $action_id)`
+
 ### CertificatesClient
+
+* `createCertificate(array $attributes)`
+* `getCertificate(int $certificate_id)`
+* `getCertificates()`
+* `deleteCertificate(int $certificate_id)`
 
 ### DomainsClient
 
@@ -93,6 +106,25 @@ var_dump( $result );
 * `getImages()`
 
 ### DropletActionsClient
+
+* `function enableBackups(int $droplet_id, array $attributes)`
+* `function disableBackups(int $droplet_id, array $attributes)`
+* `function reboot(int $droplet_id, array $attributes)`
+* `function powerCycle(int $droplet_id, array $attributes)`
+* `function shutdown(int $droplet_id, array $attributes)`
+* `function powerOff(int $droplet_id, array $attributes)`
+* `function powerOn(int $droplet_id, array $attributes)`
+* `function restore(int $droplet_id, array $attributes)`
+* `function resetPassword(int $droplet_id, array $attributes)`
+* `function resize(int $droplet_id, array $attributes)`
+* `function rebuild(int $droplet_id, array $attributes)`
+* `function rename(int $droplet_id, array $attributes)`
+* `function changeKernel(int $droplet_id, array $attributes)`
+* `function enableIPv6(int $droplet_id, array $attributes)`
+* `function enablePrivateNetworking(int $droplet_id, array $attributes)`
+* `function createSnapshot(int $droplet_id, array $attributes)`
+* ~~`function doActionByTag($tag_name, $attributes)`~~
+* `function getAction(int $droplet_id, int $action_id)`
 
 ### ImagesClient
 
