@@ -60,6 +60,11 @@ var_dump( $result );
 
 ### CertificatesClient
 
+* `createCertificate(array $attributes)`
+* `getCertificate(int $certificate_id)`
+* `getCertificates()`
+* `deleteCertificate(int $certificate_id)`
+
 ### DomainsClient
 
 * `getDomains()`

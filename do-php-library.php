@@ -12,7 +12,7 @@ class DigitalOceanClient
     public $Actions;
     public $BlockStorage;
     //public $BlockStorageActions;
-    //public $Certificates;
+    public $Certificates;
     public $Domains;
     public $DomainRecords;
     public $Droplets;
@@ -34,7 +34,7 @@ class DigitalOceanClient
         $this->Actions = new ActionsClient($config);
         $this->BlockStorage = new BlockStorageClient($config);
         //$this->BlockStorageActions = new BlockStorageActionsClient($config);
-        //$this->Certificates = new CertificatesClient($config);
+        $this->Certificates = new CertificatesClient($config);
         $this->Domains = new DomainsClient($config);
         $this->DomainRecords = new DomainRecordsClient($config);
         $this->Droplets = new DropletsClient($config);
@@ -188,7 +188,7 @@ class BlockStorageClient extends EndpointClient
         return $response;
     }
 
-    public function createSnapshotByVolumeId(int $id, array $attributes)
+    public function createSnapshotByVolumeId(int $id, array $attributes = null)
     {
         $response = $this->doCurl("POST", "volumes/$id/snapshots", $attributes);
         return $response;
@@ -262,20 +262,34 @@ class CertificatesClient extends EndpointClient
         $this->init($config);
     }
 
-    public function createCertificate()
+    public function createCertificate(array $attributes)
     {
+        $response = $this->doCurl("POST", "certificates", $attributes);
+        return $response;
     }
 
-    public function getCertificate()
+    public function getCertificate(int $certificate_id)
     {
+        $response = $this->doCurl("GET", "certificates/$certificate_id");
+        return $response;
     }
 
     public function getCertificates()
     {
+        $response = $this->doCurl("GET", "certificates");
+        return $response;
     }
 
-    public function deleteCertificate()
+    public function deleteCertificate(int $certificate_id)
     {
+        $this->doCurl("DELETE", "certificates/$certificate_id");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 }
 
