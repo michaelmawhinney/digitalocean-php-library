@@ -58,6 +58,14 @@ var_dump( $result );
 
 ### BlockStorageActionsClient
 
+* `attachVolumeById(int $volume_id, array $attributes)`
+* `attachVolumeByName(array $attributes)`
+* `deleteVolumeById(int $volume_id, array $attributes)`
+* `deleteVolumeByName(array $attributes)`
+* `resizeVolume(int $volume_id, array $attributes)`
+* `getVolumeActions(int $volume_id)`
+* `getVolumeAction(int $volume_id, int $action_id)`
+
 ### CertificatesClient
 
 * `createCertificate(array $attributes)`
