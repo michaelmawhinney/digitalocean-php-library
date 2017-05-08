@@ -239,12 +239,78 @@ class DomainsClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function getDomains()
+    {
+        $response = $this->doCurl("GET", "domains");
+        return $response;
+    }
+
+    public function createDomain(array $attributes)
+    {
+        $response = $this->doCurl("POST", "domains", $attributes);
+        return $response;
+    }
+
+    public function getDomain(string $domain_name)
+    {
+        $response = $this->doCurl("GET", "domains/$domain_name");
+        return $response;
+    }
+
+    public function deleteDomain(string $domain_name)
+    {
+        $this->doCurl("DELETE", "domains/$domain_name");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
+    }
 }
 class DomainRecordsClient extends EndpointClient
 {
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function getDomainRecords(string $domain_name)
+    {
+        $response = $this->doCurl("GET", "domains/$domain_name/records");
+        return $response;
+    }
+
+    public function createDomainRecord(string $domain_name, array $attributes)
+    {
+        $response = $this->doCurl("POST", "domains/$domain_name/records", $attributes);
+        return $response;
+    }
+
+    public function getDomainRecord(string $domain_name, int $record_id)
+    {
+        $response = $this->doCurl("GET", "domains/$domain_name/records/$record_id");
+        return $response;
+    }
+
+    public function updateDomainRecord(string $domain_name, int $record_id, array $attributes)
+    {
+        $response = $this->doCurl("PUT", "domains/$domain_name/records/$record_id", $attributes);
+        return $response;
+    }
+
+    public function deleteDomainRecord(string $domain_name, int $record_id)
+    {
+        $this->doCurl("DELETE", "domains/$domain_name/records/$record_id");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 }
 
