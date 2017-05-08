@@ -16,11 +16,11 @@ class DigitalOceanClient
     public $Domains;
     public $DomainRecords;
     public $Droplets;
-    //public $DropletActions;
-    //public $Images;
-    //public $ImageActions;
-    //public $LoadBalancers;
-    //public $Snapshots;
+    public $DropletActions;
+    public $Images;
+    public $ImageActions;
+    public $LoadBalancers;
+    public $Snapshots;
     public $SSHKeys;
     public $Regions;
     public $Sizes;
@@ -38,11 +38,11 @@ class DigitalOceanClient
         $this->Domains = new DomainsClient($config);
         $this->DomainRecords = new DomainRecordsClient($config);
         $this->Droplets = new DropletsClient($config);
-        //$this->DropletActions = new DropletActionsClient($config);
-        //$this->Images = new ImagesClient($config);
-        //$this->ImageActions = new ImageActionsClient($config);
-        //$this->LoadBalancers = new LoadBalancersClient($config);
-        //$this->Snapshots = new SnapshotsClient($config);
+        $this->DropletActions = new DropletActionsClient($config);
+        $this->Images = new ImagesClient($config);
+        $this->ImageActions = new ImageActionsClient($config);
+        $this->LoadBalancers = new LoadBalancersClient($config);
+        $this->Snapshots = new SnapshotsClient($config);
         $this->SSHKeys = new SSHKeysClient($config);
         $this->Regions = new RegionsClient($config);
         $this->Sizes = new SizesClient($config);
@@ -618,62 +618,62 @@ class ImagesClient extends EndpointClient
 
     public function getImages()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images");
+        return $response;
     }
 
     public function getDistributionImages()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images?type=distribution");
+        return $response;
     }
 
     public function getApplicationImages()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images?type=application");
+        return $response;
     }
 
     public function getUserImages()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images?private=true");
+        return $response;
     }
 
-    public function getActions()
+    public function getActions(int $image_id)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images/$image_id/actions");
+        return $response;
     }
 
-    public function getImageById()
+    public function getImageById(int $image_id)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images/$image_id");
+        return $response;
     }
 
-    public function getImageBySlug()
+    public function getImageBySlug(string $image_slug)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images/$image_slug");
+        return $response;
     }
 
-    public function updateImage()
+    public function updateImage(int $image_id, array $attributes)
     {
-//        $response = $this->doCurl("PUT", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("PUT", "images/$image_id", $attributes);
+        return $response;
     }
 
-    public function deleteImage()
+    public function deleteImage(int $image_id)
     {
-//        $this->doCurl("DELETE", "");
-//        $response = $this->getLastHttpResponse();
-//        if ($response >= 200 && $response < 300) {
-//            return true;
-//        } else {
-//            throw new Exception("API Error: " . $response );
-//            return false;
-//        }
+        $this->doCurl("DELETE", "images/$image_id");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 }
 
@@ -684,22 +684,22 @@ class ImageActionsClient extends EndpointClient
         $this->init($config);
     }
 
-    public function transferImage()
+    public function transferImage(int $image_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "images/$image_id/actions", $attributes);
+        return $response;
     }
 
-    public function convertImageToSnapshot()
+    public function convertImageToSnapshot(int $image_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "images/$image_id/actions", $attributes);
+        return $response;
     }
 
-    public function getAction()
+    public function getAction(int $image_id, int $action_id)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images/$image_id/actions/$action_id");
+        return $response;
     }
 }
 
@@ -710,76 +710,77 @@ class LoadBalancersClient extends EndpointClient
         $this->init($config);
     }
 
-    public function createLoadBalancer()
+    // need to ensure this can also create load balancers via tag
+    public function createLoadBalancer(array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "load_balancers", $attributes);
+        return $response;
     }
 
-    public function getLoadBalancer()
+    public function getLoadBalancer(int $load_balancer_id)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "load_balancers/$load_balancer_id");
+        return $response;
     }
 
     public function getLoadBalancers()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "load_balancers");
+        return $response;
     }
 
-    public function updateLoadBalancer()
+    public function updateLoadBalancer(array $attributes)
     {
-//        $response = $this->doCurl("PUT", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("PUT", "load_balancers", $attributes);
+        return $response;
     }
 
-    public function deleteLoadBalancer()
+    public function deleteLoadBalancer(int $load_balancer_id)
     {
-//        $this->doCurl("DELETE", "");
-//        $response = $this->getLastHttpResponse();
-//        if ($response >= 200 && $response < 300) {
-//            return true;
-//        } else {
-//            throw new Exception("API Error: " . $response );
-//            return false;
-//        }
+        $this->doCurl("DELETE", "load_balancers/$load_balancer_id");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 
-    public function addDroplets()
+    public function addDroplets(int $load_balancer_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "load_balancers/$load_balancer_id/droplets", $attributes);
+        return $response;
     }
 
-    public function removeDroplets()
+    public function removeDroplets(int $load_balancer_id, array $attributes)
     {
-//        $this->doCurl("DELETE", "");
-//        $response = $this->getLastHttpResponse();
-//        if ($response >= 200 && $response < 300) {
-//            return true;
-//        } else {
-//            throw new Exception("API Error: " . $response );
-//            return false;
-//        }
+        $this->doCurl("DELETE", "load_balancers/$load_balancer_id/droplets", $attributes);
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 
-    public function addForwardingRules()
+    public function addForwardingRules(int $load_balancer_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "load_balancers/$load_balancer_id/forwarding_rules", $attributes);
+        return $response;
     }
 
-    public function removeForwardingRules()
+    public function removeForwardingRules(int $load_balancer_id, array $attributes)
     {
-//        $this->doCurl("DELETE", "");
-//        $response = $this->getLastHttpResponse();
-//        if ($response >= 200 && $response < 300) {
-//            return true;
-//        } else {
-//            throw new Exception("API Error: " . $response );
-//            return false;
-//        }
+        $this->doCurl("DELETE", "load_balancers/$load_balancer_id/forwarding_rules", $attributes);
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 }
 
@@ -792,38 +793,38 @@ class SnapshotsClient extends EndpointClient
 
     public function getSnapshots()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "snapshots");
+        return $response;
     }
 
-    public function getSnapshotByDroplet()
+    public function getDropletSnapshot()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "snapshots?resource_type=droplet");
+        return $response;
     }
 
-    public function getSnapshotsByVolume()
+    public function getVolumeSnapshots()
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "snapshots?resource_type=volume");
+        return $response;
     }
 
-    public function getSnapshotById()
+    public function getSnapshotById(int $snapshot_id)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "snapshots/$snapshot_id");
+        return $response;
     }
 
-    public function deleteSnapshot()
+    public function deleteSnapshot(int $snapshot_id)
     {
-//        $this->doCurl("DELETE", "");
-//        $response = $this->getLastHttpResponse();
-//        if ($response >= 200 && $response < 300) {
-//            return true;
-//        } else {
-//            throw new Exception("API Error: " . $response );
-//            return false;
-//        }
+        $this->doCurl("DELETE", "snapshots/$snapshot_id");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
     }
 }
 
