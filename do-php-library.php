@@ -52,7 +52,7 @@ class DigitalOceanClient
     }
 }
 
-class EndPointClient
+class EndpointClient
 {
     protected $curl_handle;
     protected $access_token;
