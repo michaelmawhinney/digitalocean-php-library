@@ -95,7 +95,11 @@ var_dump( $result );
 
 ### RegionsClient
 
+* `getRegions()`
+
 ### SizesClient
+
+* `getSizes()`
 
 ### FloatingIPsClient
 
