@@ -130,5 +130,16 @@ var_dump( $result );
 
 ### FloatingIpActionsClient
 
+* `assignFloatingIp(string $ip_address, int $droplet_id)`
+* `unassignFloatingIp(string $ip_address)`
+* `getActions(string $ip_address)`
+* `getActionById(string $ip_address, int $action_id)`
+
 ### TagsClient
 
+* `createTag($string tag_name)`
+* `getTag(string $tag_name)`
+* `getTags()`
+* `tagResource(string $tag_name, int $resource_id, string $resource_type)`
+* `untagResource(string $tag_name, int $resource_id, string $resource_type)`
+* `deleteTag(string $tag_name)`

@@ -25,8 +25,8 @@ class DigitalOceanClient
     public $Regions;
     public $Sizes;
     public $FloatingIps;
-    //public $FloatingIpActions;
-    //public $Tags;
+    public $FloatingIpActions;
+    public $Tags;
 
     public function __construct(array $config)
     {
@@ -47,8 +47,8 @@ class DigitalOceanClient
         $this->Regions = new RegionsClient($config);
         $this->Sizes = new SizesClient($config);
         $this->FloatingIps = new FloatingIpsClient($config);
-        //$this->FloatingIpActions = new FloatingIpActionsClient($config);
-        //$this->Tags = new TagsClient($config);
+        $this->FloatingIpActions = new FloatingIpActionsClient($config);
+        $this->Tags = new TagsClient($config);
     }
 }
 
@@ -648,5 +648,46 @@ class TagsClient extends EndpointClient
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function createTag($string tag_name)
+    {
+        $attributes["tag_name"] = $tag_name;
+        $response = $this->doCurl("POST", "tags", $attributes);
+        return $response;
+    }
+
+    public function getTag(string $tag_name)
+    {
+        $response = $this->doCurl("GET", "tags/$tag_name");
+        return $response;
+    }
+
+    public function getTags()
+    {
+        $response = $this->doCurl("GET", "tags");
+        return $response;
+    }
+
+    public function tagResource(string $tag_name, int $resource_id, string $resource_type)
+    {
+        $attributes["resource_id"] = $resource_id;
+        $attributes["resource_type"] = $resource_type;
+        $response = $this->doCurl("POST", "tags/$tag_name/resources", $attributes);
+        return $response;
+    }
+
+    public function untagResource(string $tag_name, int $resource_id, string $resource_type)
+    {
+        $attributes["resource_id"] = $resource_id;
+        $attributes["resource_type"] = $resource_type;
+        $response = $this->doCurl("DELETE", "tags/$tag_name/resources", $attributes);
+        return $response;
+    }
+
+    public function deleteTag(string $tag_name)
+    {
+        $response = $this->doCurl("DELETE", "tags/$tag_name");
+        return $response;
     }
 }
