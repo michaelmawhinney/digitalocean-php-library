@@ -24,7 +24,7 @@ class DigitalOceanClient
     public $SSHKeys;
     public $Regions;
     public $Sizes;
-    //public $FloatingIps;
+    public $FloatingIps;
     //public $FloatingIpActions;
     //public $Tags;
 
@@ -46,7 +46,7 @@ class DigitalOceanClient
         $this->SSHKeys = new SSHKeysClient($config);
         $this->Regions = new RegionsClient($config);
         $this->Sizes = new SizesClient($config);
-        //$this->FloatingIps = new FloatingIpsClient($config);
+        $this->FloatingIps = new FloatingIpsClient($config);
         //$this->FloatingIpActions = new FloatingIpActionsClient($config);
         //$this->Tags = new TagsClient($config);
     }
@@ -613,6 +613,33 @@ class FloatingIpActionsClient extends EndpointClient
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function assignFloatingIp(string $ip_address, int $droplet_id)
+    {
+        $attributes["type"] = "assign";
+        $attributes["droplet_id"] = $droplet_id;
+        $response = $this->doCurl("POST", "floating_ips/$ip_address/actions", $attributes);
+        return $response;
+    }
+
+    public function unassignFloatingIp(string $ip_address)
+    {
+        $attributes["type"] = "unassign";
+        $response = $this->doCurl("POST", "floating_ips/$ip_address/actions", $attributes);
+        return $response;
+    }
+
+    public function getActions(string $ip_address)
+    {
+        $response = $this->doCurl("GET", "floating_ips/$ip_address/actions");
+        return $response;
+    }
+
+    public function getActionById(string $ip_address, int $action_id)
+    {
+        $response = $this->doCurl("GET", "floating_ips/$ip_address/actions/$action_id");
+        return $response;
     }
 }
 
