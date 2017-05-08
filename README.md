@@ -140,6 +140,10 @@ var_dump( $result );
 
 ### ImageActionsClient
 
+* `function transferImage(int $image_id, array $attributes)`
+* `function convertImageToSnapshot(int $image_id, array $attributes)`
+* `function getAction(int $image_id, int $action_id)`
+
 ### LoadBalancersClient
 
 ### SnapshotsClient

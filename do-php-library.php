@@ -18,7 +18,7 @@ class DigitalOceanClient
     public $Droplets;
     public $DropletActions;
     public $Images;
-    //public $ImageActions;
+    public $ImageActions;
     //public $LoadBalancers;
     //public $Snapshots;
     public $SSHKeys;
@@ -40,7 +40,7 @@ class DigitalOceanClient
         $this->Droplets = new DropletsClient($config);
         $this->DropletActions = new DropletActionsClient($config);
         $this->Images = new ImagesClient($config);
-        //$this->ImageActions = new ImageActionsClient($config);
+        $this->ImageActions = new ImageActionsClient($config);
         //$this->LoadBalancers = new LoadBalancersClient($config);
         //$this->Snapshots = new SnapshotsClient($config);
         $this->SSHKeys = new SSHKeysClient($config);
@@ -684,22 +684,22 @@ class ImageActionsClient extends EndpointClient
         $this->init($config);
     }
 
-    public function transferImage()
+    public function transferImage(int $image_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "images/$image_id/actions", $attributes);
+        return $response;
     }
 
-    public function convertImageToSnapshot()
+    public function convertImageToSnapshot(int $image_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "images/$image_id/actions", $attributes);
+        return $response;
     }
 
-    public function getAction()
+    public function getAction(int $image_id, int $action_id)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "images/$image_id/actions/$action_id");
+        return $response;
     }
 }
 
