@@ -500,112 +500,112 @@ class DropletActionsClient extends EndpointClient
         $this->init($config);
     }
 
-    public function enableBackups()
+    public function enableBackups(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function disableBackups()
+    public function disableBackups(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function reboot()
+    public function reboot(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function powerCycle()
+    public function powerCycle(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function shutdown()
+    public function shutdown(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function powerOff()
+    public function powerOff(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function powerOn()
+    public function powerOn(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function restore()
+    public function restore(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function resetPassword()
+    public function resetPassword(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function resize()
+    public function resize(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function rebuild()
+    public function rebuild(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function rename()
+    public function rename(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function changeKernel()
+    public function changeKernel(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function enableIPv6()
+    public function enableIPv6(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function enablePrivateNetworking()
+    public function enablePrivateNetworking(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function createSnapshot()
+    public function createSnapshot(int $droplet_id, array $attributes)
     {
-//        $response = $this->doCurl("POST", "", $attributes);
-//        return $response;
+        $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
+        return $response;
     }
 
-    public function doActionByTag()
-    {
-//        $response = $this->doCurl("POST", "", $attributes);
+//    public function doActionByTag($tag_name, $attributes)
+//    {
+//        $response = $this->doCurl("POST", "droplets/actions?tag_name=$tag_name", $attributes);
 //        return $response;
-    }
+//    }
 
-    public function getAction()
+    public function getAction(int $droplet_id, int $action_id)
     {
-//        $response = $this->doCurl("GET", "");
-//        return $response;
+        $response = $this->doCurl("GET", "droplets/$droplet_id/actions/$action_id");
+        return $response;
     }
 }
 
