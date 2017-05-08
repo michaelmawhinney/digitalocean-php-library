@@ -614,14 +614,6 @@ class LoadBalancersClient extends EndpointClient
     {
         $this->init($config);
     }
-}
-
-class SnapshotsClient extends EndpointClient
-{
-    public function __construct(array $config)
-    {
-        $this->init($config);
-    }
 
     public function createLoadBalancer()
     {
@@ -656,6 +648,34 @@ class SnapshotsClient extends EndpointClient
     }
 
     public function removeForwardingRules()
+    {
+    }
+}
+
+class SnapshotsClient extends EndpointClient
+{
+    public function __construct(array $config)
+    {
+        $this->init($config);
+    }
+
+    public function getSnapshots()
+    {
+    }
+
+    public function getSnapshotByDroplet()
+    {
+    }
+
+    public function getSnapshotsByVolume()
+    {
+    }
+
+    public function getSnapshotById()
+    {
+    }
+
+    public function deleteSnapshot()
     {
     }
 }
