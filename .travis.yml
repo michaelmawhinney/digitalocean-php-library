@@ -9,12 +9,12 @@ php:
   - 7.1
 
 before_script:
-  pear install pear/PHP_CodeSniffer
-  phpenv rehash
+  pear install pear/PHP_CodeSniffer ;
+  phpenv rehash ;
 
 script:
-  phpunit Test.php
-  phpcs do-php-library.php
+  phpunit Test.php ;
+  phpcs do-php-library.php ;
 
 matrix:
   fast_finish: true
