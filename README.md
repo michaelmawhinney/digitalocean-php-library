@@ -104,6 +104,15 @@ var_dump( $result );
 
 ### SSHKeysClient
 
+* `getKeys()`
+* `createKey(array $attributes)`
+* `getKeyById(int $key_id)`
+* `getKeyByFingerprint(string $key_fingerprint)`
+* `updateKeyById(int $key_id, array $attributes)`
+* `updateKeyByFingerprint(string $key_fingerprint, array $attributes)`
+* `deleteKeyById(int $key_id)` __or__ `destroyKeyById(int $key_id)`
+* `deleteKeyByFingerprint(string $key_fingerprint)` __or__ `destroyKeyByFingerprint(string $key_fingerprint)`
+
 ### RegionsClient
 
 * `getRegions()`
@@ -112,9 +121,25 @@ var_dump( $result );
 
 * `getSizes()`
 
-### FloatingIPsClient
+### FloatingIpsClient
 
-### FloatingIPActionsClient
+* `getFloatingIps()`
+* `createFloatingIp(array $attributes)`
+* `getFloatingIp(string $ip_address)`
+* `deleteFloatingIp(string $ip_address)`
+
+### FloatingIpActionsClient
+
+* `assignFloatingIp(string $ip_address, int $droplet_id)`
+* `unassignFloatingIp(string $ip_address)`
+* `getActions(string $ip_address)`
+* `getActionById(string $ip_address, int $action_id)`
 
 ### TagsClient
 
+* `createTag($string tag_name)`
+* `getTag(string $tag_name)`
+* `getTags()`
+* `tagResource(string $tag_name, int $resource_id, string $resource_type)`
+* `untagResource(string $tag_name, int $resource_id, string $resource_type)`
+* `deleteTag(string $tag_name)`

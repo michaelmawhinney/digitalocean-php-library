@@ -11,21 +11,21 @@ class DigitalOceanClient
     public $Account;
     public $Actions;
     public $BlockStorage;
-    public $BlockStorageActions;
-    public $Certificates;
+    //public $BlockStorageActions;
+    //public $Certificates;
     public $Domains;
     public $DomainRecords;
     public $Droplets;
-    public $DropletActions;
-    public $Images;
-    public $ImageActions;
-    public $LoadBalancers;
-    public $Snapshots;
+    //public $DropletActions;
+    //public $Images;
+    //public $ImageActions;
+    //public $LoadBalancers;
+    //public $Snapshots;
     public $SSHKeys;
     public $Regions;
     public $Sizes;
-    public $FloatingIPs;
-    public $FloatingIPActions;
+    public $FloatingIps;
+    public $FloatingIpActions;
     public $Tags;
 
     public function __construct(array $config)
@@ -33,21 +33,21 @@ class DigitalOceanClient
         $this->Account = new AccountClient($config);
         $this->Actions = new ActionsClient($config);
         $this->BlockStorage = new BlockStorageClient($config);
-        $this->BlockStorageActions = new BlockStorageActionsClient($config);
-        $this->Certificates = new CertificatesClient($config);
+        //$this->BlockStorageActions = new BlockStorageActionsClient($config);
+        //$this->Certificates = new CertificatesClient($config);
         $this->Domains = new DomainsClient($config);
         $this->DomainRecords = new DomainRecordsClient($config);
         $this->Droplets = new DropletsClient($config);
-        $this->DropletActions = new DropletActionsClient($config);
-        $this->Images = new ImagesClient($config);
-        $this->ImageActions = new ImageActionsClient($config);
-        $this->LoadBalancers = new LoadBalancersClient($config);
-        $this->Snapshots = new SnapshotsClient($config);
+        //$this->DropletActions = new DropletActionsClient($config);
+        //$this->Images = new ImagesClient($config);
+        //$this->ImageActions = new ImageActionsClient($config);
+        //$this->LoadBalancers = new LoadBalancersClient($config);
+        //$this->Snapshots = new SnapshotsClient($config);
         $this->SSHKeys = new SSHKeysClient($config);
         $this->Regions = new RegionsClient($config);
         $this->Sizes = new SizesClient($config);
-        $this->FloatingIPs = new FloatingIPsClient($config);
-        $this->FloatingIPActions = new FloatingIPActionsClient($config);
+        $this->FloatingIps = new FloatingIpsClient($config);
+        $this->FloatingIpActions = new FloatingIpActionsClient($config);
         $this->Tags = new TagsClient($config);
     }
 }
@@ -224,6 +224,34 @@ class BlockStorageActionsClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function attachVolumeById()
+    {
+    }
+
+    public function attachVolumeByName()
+    {
+    }
+
+    public function deleteVolumeById()
+    {
+    }
+
+    public function deleteVolumeByName()
+    {
+    }
+
+    public function resizeVolume()
+    {
+    }
+
+    public function getVolumeActions()
+    {
+    }
+
+    public function getVolumeAction()
+    {
+    }
 }
 
 class CertificatesClient extends EndpointClient
@@ -232,7 +260,24 @@ class CertificatesClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function createCertificate()
+    {
+    }
+
+    public function getCertificate()
+    {
+    }
+
+    public function getCertificates()
+    {
+    }
+
+    public function deleteCertificate()
+    {
+    }
 }
+
 class DomainsClient extends EndpointClient
 {
     public function __construct(array $config)
@@ -270,6 +315,7 @@ class DomainsClient extends EndpointClient
         }
     }
 }
+
 class DomainRecordsClient extends EndpointClient
 {
     public function __construct(array $config)
@@ -424,6 +470,78 @@ class DropletActionsClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function enableBackups()
+    {
+    }
+
+    public function disableBackups()
+    {
+    }
+
+    public function reboot()
+    {
+    }
+
+    public function powerCycle()
+    {
+    }
+
+    public function shutdown()
+    {
+    }
+
+    public function powerOff()
+    {
+    }
+
+    public function powerOn()
+    {
+    }
+
+    public function restore()
+    {
+    }
+
+    public function resetPassword()
+    {
+    }
+
+    public function resize()
+    {
+    }
+
+    public function rebuild()
+    {
+    }
+
+    public function rename()
+    {
+    }
+
+    public function changeKernel()
+    {
+    }
+
+    public function enableIPv6()
+    {
+    }
+
+    public function enablePrivateNetworking()
+    {
+    }
+
+    public function createSnapshot()
+    {
+    }
+
+    public function doActionByTag()
+    {
+    }
+
+    public function getAction()
+    {
+    }
 }
 
 class ImagesClient extends EndpointClient
@@ -431,6 +549,42 @@ class ImagesClient extends EndpointClient
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function getImages()
+    {
+    }
+
+    public function getDistributionImages()
+    {
+    }
+
+    public function getApplicationImages()
+    {
+    }
+
+    public function getUserImages()
+    {
+    }
+
+    public function getActions()
+    {
+    }
+
+    public function getImageById()
+    {
+    }
+
+    public function getImageBySlug()
+    {
+    }
+
+    public function updateImage()
+    {
+    }
+
+    public function deleteImage()
+    {
     }
 }
 
@@ -440,6 +594,18 @@ class ImageActionsClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function transferImage()
+    {
+    }
+
+    public function convertImageToSnapshot()
+    {
+    }
+
+    public function getAction()
+    {
+    }
 }
 
 class LoadBalancersClient extends EndpointClient
@@ -447,6 +613,42 @@ class LoadBalancersClient extends EndpointClient
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function createLoadBalancer()
+    {
+    }
+
+    public function getLoadBalancer()
+    {
+    }
+
+    public function getLoadBalancers()
+    {
+    }
+
+    public function updateLoadBalancer()
+    {
+    }
+
+    public function deleteLoadBalancer()
+    {
+    }
+
+    public function addDroplets()
+    {
+    }
+
+    public function removeDroplets()
+    {
+    }
+
+    public function addForwardingRules()
+    {
+    }
+
+    public function removeForwardingRules()
+    {
     }
 }
 
@@ -456,6 +658,26 @@ class SnapshotsClient extends EndpointClient
     {
         $this->init($config);
     }
+
+    public function getSnapshots()
+    {
+    }
+
+    public function getSnapshotByDroplet()
+    {
+    }
+
+    public function getSnapshotsByVolume()
+    {
+    }
+
+    public function getSnapshotById()
+    {
+    }
+
+    public function deleteSnapshot()
+    {
+    }
 }
 
 class SSHKeysClient extends EndpointClient
@@ -463,6 +685,81 @@ class SSHKeysClient extends EndpointClient
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function getKeys()
+    {
+        $response = $this->doCurl("GET", "account/keys");
+        return $response;
+    }
+
+    public function createKey(array $attributes)
+    {
+        $response = $this->doCurl("POST", "account/keys", $attributes);
+        return $response;
+    }
+
+    public function getKeyById(int $key_id)
+    {
+        $response = $this->doCurl("GET", "account/keys/$key_id");
+        return $response;
+    }
+
+    public function getKeyByFingerprint(string $key_fingerprint)
+    {
+        $response = $this->doCurl("GET", "account/keys/$key_fingerprint");
+        return $response;
+    }
+
+    public function updateKeyById(int $key_id, array $attributes)
+    {
+        $response = $this->doCurl("PUT", "account/keys/$key_id", $attributes);
+        return $response;
+    }
+
+    public function updateKeyByFingerprint(string $key_fingerprint, array $attributes)
+    {
+        $response = $this->doCurl("PUT", "account/keys/$key_fingerprint", $attributes);
+        return $response;
+    }
+
+    public function deleteKeyById(int $key_id)
+    {
+        $this->doCurl("DELETE", "account/keys/$key_id");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
+    }
+
+    public function deleteKeyByFingerprint(string $key_fingerprint)
+    {
+        $this->doCurl("DELETE", "account/keys/$key_fingerprint");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
+    }
+
+    /**
+     *  The API docs use the term "destroy" instead of "delete" for SSH keys.
+     *  These functions were created as aliases to avoid potential confusion.
+     */
+    public function destroyKeyById(int $key_id)
+    {
+        return $this->deleteKeyById($key_id);
+    }
+
+    public function destroyKeyByFingerprint(string $key_fingerprint)
+    {
+        return $this->deleteKeyByFingerprint($key_fingerprint);
+
     }
 }
 
@@ -494,19 +791,76 @@ class SizesClient extends EndpointClient
     }
 }
 
-class FloatingIPsClient extends EndpointClient
+class FloatingIpsClient extends EndpointClient
 {
     public function __construct(array $config)
     {
         $this->init($config);
     }
+
+    public function getFloatingIps()
+    {
+        $response = $this->doCurl("GET", "floating_ips");
+        return $response;
+    }
+
+    public function createFloatingIp(array $attributes)
+    {
+        $response = $this->doCurl("POST", "floating_ips", $attributes);
+        return $response;
+    }
+
+    public function getFloatingIp(string $ip_address)
+    {
+        $response = $this->doCurl("GET", "floating_ips/$ip_address");
+        return $response;
+    }
+
+    public function deleteFloatingIp(string $ip_address)
+    {
+        $this->doCurl("DELETE", "floating_ips/$ip_address");
+        $response = $this->getLastHttpResponse();
+        if ($response >= 200 && $response < 300) {
+            return true;
+        } else {
+            throw new Exception("API Error: " . $response );
+            return false;
+        }
+    }
 }
 
-class FloatingIPActionsClient extends EndpointClient
+class FloatingIpActionsClient extends EndpointClient
 {
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function assignFloatingIp(string $ip_address, int $droplet_id)
+    {
+        $attributes["type"] = "assign";
+        $attributes["droplet_id"] = $droplet_id;
+        $response = $this->doCurl("POST", "floating_ips/$ip_address/actions", $attributes);
+        return $response;
+    }
+
+    public function unassignFloatingIp(string $ip_address)
+    {
+        $attributes["type"] = "unassign";
+        $response = $this->doCurl("POST", "floating_ips/$ip_address/actions", $attributes);
+        return $response;
+    }
+
+    public function getActions(string $ip_address)
+    {
+        $response = $this->doCurl("GET", "floating_ips/$ip_address/actions");
+        return $response;
+    }
+
+    public function getActionById(string $ip_address, int $action_id)
+    {
+        $response = $this->doCurl("GET", "floating_ips/$ip_address/actions/$action_id");
+        return $response;
     }
 }
 
@@ -515,5 +869,46 @@ class TagsClient extends EndpointClient
     public function __construct(array $config)
     {
         $this->init($config);
+    }
+
+    public function createTag(string $tag_name)
+    {
+        $attributes["tag_name"] = $tag_name;
+        $response = $this->doCurl("POST", "tags", $attributes);
+        return $response;
+    }
+
+    public function getTag(string $tag_name)
+    {
+        $response = $this->doCurl("GET", "tags/$tag_name");
+        return $response;
+    }
+
+    public function getTags()
+    {
+        $response = $this->doCurl("GET", "tags");
+        return $response;
+    }
+
+    public function tagResource(string $tag_name, int $resource_id, string $resource_type)
+    {
+        $attributes["resource_id"] = $resource_id;
+        $attributes["resource_type"] = $resource_type;
+        $response = $this->doCurl("POST", "tags/$tag_name/resources", $attributes);
+        return $response;
+    }
+
+    public function untagResource(string $tag_name, int $resource_id, string $resource_type)
+    {
+        $attributes["resource_id"] = $resource_id;
+        $attributes["resource_type"] = $resource_type;
+        $response = $this->doCurl("DELETE", "tags/$tag_name/resources", $attributes);
+        return $response;
+    }
+
+    public function deleteTag(string $tag_name)
+    {
+        $response = $this->doCurl("DELETE", "tags/$tag_name");
+        return $response;
     }
 }
