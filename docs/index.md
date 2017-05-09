@@ -1,9 +1,8 @@
 **DigitalOcean PHP Library** is a set of PHP classes designed to interact with the DigitalOcean API v2. The aim of this project is to create a simple library that can be included easily without an autoloader like Composer.
 
-* TOC
-{:toc}
+# class DigitalOceanClient
 
-# DigitalOceanClient
+*This main class can be used to load all the endpoint classes.*
 
 ```
 $client = new DigitalOceanClient([
@@ -11,23 +10,31 @@ $client = new DigitalOceanClient([
 ]);
 ```
 
-## AccountClient
+## class AccountClient
 
-### getUserInformation
+*This class interacts with the `/v2/account/` endpoint.*
+
+### method getUserInformation
+
+https://developers.digitalocean.com/documentation/v2/#get-user-information
 
 ```
 $result = $client->Account->getUserInformation();
 ```
 
-## ActionsClient
+## class ActionsClient
 
-### getActions
+### method getActions
+
+https://developers.digitalocean.com/documentation/v2/#list-all-actions
 
 ```
 $result = $client->Actions->getActions();
 ```
 
-### getActionsById
+### method getActionsById
+
+https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-action
 
 ```
 $result = $client->Actions->getActionsById([/* ... */]);
@@ -41,163 +48,163 @@ $result = $client->Actions->getActionById([
 ]);
 ```
 
-## BlockStorageClient
+## class BlockStorageClient
 
-### getVolumes
-### createVolume
-### getVolumeById
-### getVolumeByName
-### getSnapshotsByVolumeId
-### createSnapshotByVolumeId
-### deleteVolumeById
-### deleteVolumeByName
+### method getVolumes
+### method createVolume
+### method getVolumeById
+### method getVolumeByName
+### method getSnapshotsByVolumeId
+### method createSnapshotByVolumeId
+### method deleteVolumeById
+### method deleteVolumeByName
 
-## BlockStorageActionsClient
+## class BlockStorageActionsClient
 
-### attachVolumeById
-### attachVolumeByName
-### deleteVolumeById
-### deleteVolumeByName
-### resizeVolume
-### getVolumeActions
-### getVolumeAction
+### method attachVolumeById
+### method attachVolumeByName
+### method deleteVolumeById
+### method deleteVolumeByName
+### method resizeVolume
+### method getVolumeActions
+### method getVolumeAction
 
-## CertificatesClient
+## class CertificatesClient
 
-### createCertificate
-### getCertificate
-### getCertificates
-### deleteCertificate
+### method createCertificate
+### method getCertificate
+### method getCertificates
+### method deleteCertificate
 
-## DomainsClient
+## class DomainsClient
 
-### getDomains
-### createDomain
-### getDomain
-### deleteDomain
+### method getDomains
+### method createDomain
+### method getDomain
+### method deleteDomain
 
-## DomainRecordsClient
+## class DomainRecordsClient
 
-### getDomainRecords
-### createDomainRecord
-### getDomainRecord
-### updateDomainRecord
-### deleteDomainRecord
+### method getDomainRecords
+### method createDomainRecord
+### method getDomainRecord
+### method updateDomainRecord
+### method deleteDomainRecord
 
-## DropletClient
+## class DropletClient
 
-### createDroplet
-### deleteDropletById
-### deleteDropletsByTag
-### getDropletActionsById
-### getDropletBackupsById
-### getDropletById
-### getDropletByTag
-### getDropletKernelsById
-### getDropletNeighbors
-### getDropletNeighborsById
-### getDroplets
-### getDropletsByTag
-### getDropletSnapshotsById
-### getImages
+### method createDroplet
+### method deleteDropletById
+### method deleteDropletsByTag
+### method getDropletActionsById
+### method getDropletBackupsById
+### method getDropletById
+### method getDropletByTag
+### method getDropletKernelsById
+### method getDropletNeighbors
+### method getDropletNeighborsById
+### method getDroplets
+### method getDropletsByTag
+### method getDropletSnapshotsById
+### method getImages
 
-## DropletActionsClient
+## class DropletActionsClient
 
-### function enableBackups
-### function disableBackups
-### function reboot
-### function powerCycle
-### function shutdown
-### function powerOff
-### function powerOn
-### function restore
-### function resetPassword
-### function resize
-### function rebuild
-### function rename
-### function changeKernel
-### function enableIPv6
-### function enablePrivateNetworking
-### function createSnapshot
-### ~~function doActionByTag~~
-### function getAction
+### method enableBackups
+### method disableBackups
+### method reboot
+### method powerCycle
+### method shutdown
+### method powerOff
+### method powerOn
+### method restore
+### method resetPassword
+### method resize
+### method rebuild
+### method rename
+### method changeKernel
+### method enableIPv6
+### method enablePrivateNetworking
+### method createSnapshot
+### ~~method doActionByTag~~
+### method getAction
 
-## ImagesClient
+## class ImagesClient
 
-### function getImages
-### function getDistributionImages
-### function getApplicationImages
-### function getUserImages
-### function getActions
-### function getImageById
-### function getImageBySlug
-### function updateImage
-### function deleteImage
+### method getImages
+### method getDistributionImages
+### method getApplicationImages
+### method getUserImages
+### method getActions
+### method getImageById
+### method getImageBySlug
+### method updateImage
+### method deleteImage
 
-## ImageActionsClient
+## class ImageActionsClient
 
-### function transferImage
-### function convertImageToSnapshot
-### function getAction
+### method transferImage
+### method convertImageToSnapshot
+### method getAction
 
-## LoadBalancersClient
+## class LoadBalancersClient
 
-### function createLoadBalancer
-### function getLoadBalancer
-### function getLoadBalancers
-### function updateLoadBalancer
-### function deleteLoadBalancer
-### function addDroplets
-### function removeDroplets
-### function addForwardingRules
-### function removeForwardingRules
+### method createLoadBalancer
+### method getLoadBalancer
+### method getLoadBalancers
+### method updateLoadBalancer
+### method deleteLoadBalancer
+### method addDroplets
+### method removeDroplets
+### method addForwardingRules
+### method removeForwardingRules
 
-## SnapshotsClient
+## class SnapshotsClient
 
-### function getSnapshots
-### function getDropletSnapshot
-### function getVolumeSnapshots
-### function getSnapshotById
-### function deleteSnapshot
+### method getSnapshots
+### method getDropletSnapshot
+### method getVolumeSnapshots
+### method getSnapshotById
+### method deleteSnapshot
 
-## SSHKeysClient
+## class SSHKeysClient
 
-### getKeys
-### createKey
-### getKeyById
-### getKeyByFingerprint
-### updateKeyById
-### updateKeyByFingerprint
-### deleteKeyById
-### deleteKeyByFingerprint
+### method getKeys
+### method createKey
+### method getKeyById
+### method getKeyByFingerprint
+### method updateKeyById
+### method updateKeyByFingerprint
+### method deleteKeyById
+### method deleteKeyByFingerprint
 
-## RegionsClient
+## class RegionsClient
 
-### getRegions
+### method getRegions
 
-## SizesClient
+## class SizesClient
 
-### getSizes
+### method getSizes
 
-## FloatingIpsClient
+## class FloatingIpsClient
 
-### getFloatingIps
-### createFloatingIp
-### getFloatingIp
-### deleteFloatingIp
+### method getFloatingIps
+### method createFloatingIp
+### method getFloatingIp
+### method deleteFloatingIp
 
-## FloatingIpActionsClient
+## class FloatingIpActionsClient
 
-### assignFloatingIp
-### unassignFloatingIp
-### getActions
-### getActionById
+### method assignFloatingIp
+### method unassignFloatingIp
+### method getActions
+### method getActionById
 
-## TagsClient
+## class TagsClient
 
-### createTag
-### getTag
-### getTags
-### tagResource
-### untagResource
-### deleteTag
+### method createTag
+### method getTag
+### method getTags
+### method tagResource
+### method untagResource
+### method deleteTag
