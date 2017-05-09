@@ -1,210 +1,203 @@
-# digitalocean-php-library
-
 **DigitalOcean PHP Library** is a set of PHP classes designed to interact with the DigitalOcean API v2. The aim of this project is to create a simple library that can be included easily without an autoloader like Composer.
 
 * TOC
 {:toc}
 
-## Requirements
-
-* PHP 5.3+ with `cURL` enabled
-
-
-## How to use
-
-Simply include `do-php-library.php` and provide the `DigitalOceanClient` class with your access token.
-
-## Code Example
-
-*You will need to replace the dummy token below with your  DigitalOcean API access token.*
+# DigitalOceanClient
 
 ```
-<?php
-
-require "do-php-library.php";
-
-$config["access_token"] = "783a8a829cafa40f75f4f71bf2a961dcdb2d63448317c512fb4d07f2dd8d1bd0";
-$client = new DigitalOceanClient($config);
-
-try {
-    $result = $client->Droplets->getDroplets();
-} catch(Exception $e) {
-    die( 'Caught exception: ' . $e->getMessage() );
-}
-
-var_dump( $result );
-
-?>
+$client = new DigitalOceanClient([
+    'access_token' => '<string>' // REQUIRED
+]);
 ```
 
-## Endpoint Classes
+## AccountClient
 
-### AccountClient
+### getUserInformation
 
-* `getUserInformation()`
+```
+$result = $client->Account->getUserInformation();
+```
 
-### ActionsClient
+## ActionsClient
 
-* `getActions()`
-* `getActionsById(int $id)`
+### getActions
 
-### BlockStorageClient
+```
+$result = $client->Actions->getActions();
+```
 
-* `getVolumes()`
-* `createVolume(array $attributes)`
-* `getVolumeById(int $id)`
-* `getVolumeByName(string $drive_name, string $region)`
-* `getSnapshotsByVolumeId(int $id)`
-* `createSnapshotByVolumeId(int $id, array $attributes)`
-* `deleteVolumeById(int $id)`
-* `deleteVolumeByName(string $drive_name, string $region)`
+### getActionsById
 
-### BlockStorageActionsClient
+```
+$result = $client->Actions->getActionsById([/* ... */]);
+```
 
-* `attachVolumeById(int $volume_id, array $attributes)`
-* `attachVolumeByName(array $attributes)`
-* `deleteVolumeById(int $volume_id, array $attributes)`
-* `deleteVolumeByName(array $attributes)`
-* `resizeVolume(int $volume_id, array $attributes)`
-* `getVolumeActions(int $volume_id)`
-* `getVolumeAction(int $volume_id, int $action_id)`
+#### Parameter Syntax
 
-### CertificatesClient
+```
+$result = $client->Actions->getActionById([
+    'id' => '<string>' // REQUIRED
+]);
+```
 
-* `createCertificate(array $attributes)`
-* `getCertificate(int $certificate_id)`
-* `getCertificates()`
-* `deleteCertificate(int $certificate_id)`
+## BlockStorageClient
 
-### DomainsClient
+### getVolumes
+### createVolume
+### getVolumeById
+### getVolumeByName
+### getSnapshotsByVolumeId
+### createSnapshotByVolumeId
+### deleteVolumeById
+### deleteVolumeByName
 
-* `getDomains()`
-* `createDomain(array $attributes)`
-* `getDomain(string $domain_name)`
-* `deleteDomain(string $domain_name)`
+## BlockStorageActionsClient
 
-### DomainRecordsClient
+### attachVolumeById
+### attachVolumeByName
+### deleteVolumeById
+### deleteVolumeByName
+### resizeVolume
+### getVolumeActions
+### getVolumeAction
 
-* `getDomainRecords(string $domain_name)`
-* `createDomainRecord(string $domain_name, array $attributes)`
-* `getDomainRecord(string $domain_name, int $record_id)`
-* `updateDomainRecord(string $domain_name, int $record_id, array $attributes)`
-* `deleteDomainRecord(string $domain_name, int $record_id)`
+## CertificatesClient
 
-### DropletClient
+### createCertificate
+### getCertificate
+### getCertificates
+### deleteCertificate
 
-* `createDroplet(array $attributes)`
-* `deleteDropletById(int $id)`
-* `deleteDropletsByTag(string $tag_name)`
-* `getDropletActionsById(int $id)`
-* `getDropletBackupsById(int $id)`
-* `getDropletById(int $id)`
-* `getDropletByTag(string $tag_name)`
-* `getDropletKernelsById(int $id)`
-* `getDropletNeighbors()`
-* `getDropletNeighborsById(int $id)`
-* `getDroplets()`
-* `getDropletsByTag(string $tag_name)`
-* `getDropletSnapshotsById(int $id)`
-* `getImages()`
+## DomainsClient
 
-### DropletActionsClient
+### getDomains
+### createDomain
+### getDomain
+### deleteDomain
 
-* `function enableBackups(int $droplet_id, array $attributes)`
-* `function disableBackups(int $droplet_id, array $attributes)`
-* `function reboot(int $droplet_id, array $attributes)`
-* `function powerCycle(int $droplet_id, array $attributes)`
-* `function shutdown(int $droplet_id, array $attributes)`
-* `function powerOff(int $droplet_id, array $attributes)`
-* `function powerOn(int $droplet_id, array $attributes)`
-* `function restore(int $droplet_id, array $attributes)`
-* `function resetPassword(int $droplet_id, array $attributes)`
-* `function resize(int $droplet_id, array $attributes)`
-* `function rebuild(int $droplet_id, array $attributes)`
-* `function rename(int $droplet_id, array $attributes)`
-* `function changeKernel(int $droplet_id, array $attributes)`
-* `function enableIPv6(int $droplet_id, array $attributes)`
-* `function enablePrivateNetworking(int $droplet_id, array $attributes)`
-* `function createSnapshot(int $droplet_id, array $attributes)`
-* ~~`function doActionByTag($tag_name, $attributes)`~~
-* `function getAction(int $droplet_id, int $action_id)`
+## DomainRecordsClient
 
-### ImagesClient
+### getDomainRecords
+### createDomainRecord
+### getDomainRecord
+### updateDomainRecord
+### deleteDomainRecord
 
-* `function getImages()`
-* `function getDistributionImages()`
-* `function getApplicationImages()`
-* `function getUserImages()`
-* `function getActions(int $image_id)`
-* `function getImageById(int $image_id)`
-* `function getImageBySlug(string $image_slug)`
-* `function updateImage(int $image_id, array $attributes)`
-* `function deleteImage(int $image_id)`
+## DropletClient
 
-### ImageActionsClient
+### createDroplet
+### deleteDropletById
+### deleteDropletsByTag
+### getDropletActionsById
+### getDropletBackupsById
+### getDropletById
+### getDropletByTag
+### getDropletKernelsById
+### getDropletNeighbors
+### getDropletNeighborsById
+### getDroplets
+### getDropletsByTag
+### getDropletSnapshotsById
+### getImages
 
-* `function transferImage(int $image_id, array $attributes)`
-* `function convertImageToSnapshot(int $image_id, array $attributes)`
-* `function getAction(int $image_id, int $action_id)`
+## DropletActionsClient
 
-### LoadBalancersClient
+### function enableBackups
+### function disableBackups
+### function reboot
+### function powerCycle
+### function shutdown
+### function powerOff
+### function powerOn
+### function restore
+### function resetPassword
+### function resize
+### function rebuild
+### function rename
+### function changeKernel
+### function enableIPv6
+### function enablePrivateNetworking
+### function createSnapshot
+### ~~function doActionByTag~~
+### function getAction
 
-* `function createLoadBalancer(array $attributes)`
-* `function getLoadBalancer(int $load_balancer_id)`
-* `function getLoadBalancers()`
-* `function updateLoadBalancer(array $attributes)`
-* `function deleteLoadBalancer(int $load_balancer_id)`
-* `function addDroplets(int $load_balancer_id, array $attributes)`
-* `function removeDroplets(int $load_balancer_id, array $attributes)`
-* `function addForwardingRules(int $load_balancer_id, array $attributes)`
-* `function removeForwardingRules(int $load_balancer_id, array $attributes)`
+## ImagesClient
 
-### SnapshotsClient
+### function getImages
+### function getDistributionImages
+### function getApplicationImages
+### function getUserImages
+### function getActions
+### function getImageById
+### function getImageBySlug
+### function updateImage
+### function deleteImage
 
-* `function getSnapshots()`
-* `function getDropletSnapshot()`
-* `function getVolumeSnapshots()`
-* `function getSnapshotById(int $snapshot_id)`
-* `function deleteSnapshot(int $snapshot_id)`
+## ImageActionsClient
 
-### SSHKeysClient
+### function transferImage
+### function convertImageToSnapshot
+### function getAction
 
-* `getKeys()`
-* `createKey(array $attributes)`
-* `getKeyById(int $key_id)`
-* `getKeyByFingerprint(string $key_fingerprint)`
-* `updateKeyById(int $key_id, array $attributes)`
-* `updateKeyByFingerprint(string $key_fingerprint, array $attributes)`
-* `deleteKeyById(int $key_id)` __or__ `destroyKeyById(int $key_id)`
-* `deleteKeyByFingerprint(string $key_fingerprint)` __or__ `destroyKeyByFingerprint(string $key_fingerprint)`
+## LoadBalancersClient
 
-### RegionsClient
+### function createLoadBalancer
+### function getLoadBalancer
+### function getLoadBalancers
+### function updateLoadBalancer
+### function deleteLoadBalancer
+### function addDroplets
+### function removeDroplets
+### function addForwardingRules
+### function removeForwardingRules
 
-* `getRegions()`
+## SnapshotsClient
 
-### SizesClient
+### function getSnapshots
+### function getDropletSnapshot
+### function getVolumeSnapshots
+### function getSnapshotById
+### function deleteSnapshot
 
-* `getSizes()`
+## SSHKeysClient
 
-### FloatingIpsClient
+### getKeys
+### createKey
+### getKeyById
+### getKeyByFingerprint
+### updateKeyById
+### updateKeyByFingerprint
+### deleteKeyById
+### deleteKeyByFingerprint
 
-* `getFloatingIps()`
-* `createFloatingIp(array $attributes)`
-* `getFloatingIp(string $ip_address)`
-* `deleteFloatingIp(string $ip_address)`
+## RegionsClient
 
-### FloatingIpActionsClient
+### getRegions
 
-* `assignFloatingIp(string $ip_address, int $droplet_id)`
-* `unassignFloatingIp(string $ip_address)`
-* `getActions(string $ip_address)`
-* `getActionById(string $ip_address, int $action_id)`
+## SizesClient
 
-### TagsClient
+### getSizes
 
-* `createTag($string tag_name)`
-* `getTag(string $tag_name)`
-* `getTags()`
-* `tagResource(string $tag_name, int $resource_id, string $resource_type)`
-* `untagResource(string $tag_name, int $resource_id, string $resource_type)`
-* `deleteTag(string $tag_name)`
+## FloatingIpsClient
+
+### getFloatingIps
+### createFloatingIp
+### getFloatingIp
+### deleteFloatingIp
+
+## FloatingIpActionsClient
+
+### assignFloatingIp
+### unassignFloatingIp
+### getActions
+### getActionById
+
+## TagsClient
+
+### createTag
+### getTag
+### getTags
+### tagResource
+### untagResource
+### deleteTag
