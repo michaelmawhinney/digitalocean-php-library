@@ -128,11 +128,41 @@ var_dump( $result );
 
 ### ImagesClient
 
+* `function getImages()`
+* `function getDistributionImages()`
+* `function getApplicationImages()`
+* `function getUserImages()`
+* `function getActions(int $image_id)`
+* `function getImageById(int $image_id)`
+* `function getImageBySlug(string $image_slug)`
+* `function updateImage(int $image_id, array $attributes)`
+* `function deleteImage(int $image_id)`
+
 ### ImageActionsClient
+
+* `function transferImage(int $image_id, array $attributes)`
+* `function convertImageToSnapshot(int $image_id, array $attributes)`
+* `function getAction(int $image_id, int $action_id)`
 
 ### LoadBalancersClient
 
+* `function createLoadBalancer(array $attributes)`
+* `function getLoadBalancer(int $load_balancer_id)`
+* `function getLoadBalancers()`
+* `function updateLoadBalancer(array $attributes)`
+* `function deleteLoadBalancer(int $load_balancer_id)`
+* `function addDroplets(int $load_balancer_id, array $attributes)`
+* `function removeDroplets(int $load_balancer_id, array $attributes)`
+* `function addForwardingRules(int $load_balancer_id, array $attributes)`
+* `function removeForwardingRules(int $load_balancer_id, array $attributes)`
+
 ### SnapshotsClient
+
+* `function getSnapshots()`
+* `function getDropletSnapshot()`
+* `function getVolumeSnapshots()`
+* `function getSnapshotById(int $snapshot_id)`
+* `function deleteSnapshot(int $snapshot_id)`
 
 ### SSHKeysClient
 
