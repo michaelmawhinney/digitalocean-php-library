@@ -92,22 +92,34 @@ abstract class EndpointClient
                 return false;
         }
 
-        $response = curl_exec($this->curl_handle);
-        $response_array = json_decode($response, true);
+        $curl_response = curl_exec($this->curl_handle);
+        $return_response = json_decode($curl_response, true);
 
-        if( $response === false || curl_errno($this->curl_handle)!== 0 ) {
+        if( $curl_response === false || curl_errno($this->curl_handle)!== 0 ) {
             throw new Exception("cURL Error: " . curl_error($this->curl_handle));
-            return false;
+            $return_response = false;
         }
-
-        if( isset($response_array["id"]) && $response_array["id"]=="unauthorized" ) {
-            throw new Exception("API Error: " . $response_array["message"]);
-            return false;
+        else if( isset($return_response["id"]) && $return_response["id"]=="unauthorized" ) {
+            throw new Exception("API Error: " . $return_response["message"]);
+            $return_response = false;
+        }
+        else if( $method == "DELETE" ) {
+            $http_response = $this->getLastHttpResponse();
+            if ($http_response >= 200 && $http_response < 300) {
+                $return_response = true;
+            } else {
+                throw new Exception("API Error: HTTP code " . $curl_response);
+                $return_response = false;
+            }
+        }
+        else 
+        {
+            /* do nothing */
         }
 
         curl_close($this->curl_handle);
         $this->curl_handle = null;
-        return $response_array;
+        return $return_response;
     }
 
     protected function getLastHttpResponse()
@@ -144,9 +156,10 @@ class ActionsClient extends EndpointClient
         return $response;
     }
 
-    public function getActionById(int $id)
+    public function getActionById(array $attributes)
     {
-        $response = $this->doCurl("GET", "actions/$id");
+        $action_id = $attributes['id'];
+        $response = $this->doCurl("GET", "actions/$action_id");
         return $response;       
     }
 }
@@ -170,52 +183,48 @@ class BlockStorageClient extends EndpointClient
         return $response;
     }
 
-    public function getVolumeById(int $id)
+    public function getVolumeById(array $attributes)
     {
-        $response = $this->doCurl("GET", "volumes/$id");
+        $volume_id = $attributes['id'];
+        $response = $this->doCurl("GET", "volumes/$volumeid");
         return $response;
     }
 
-    public function getVolumeByName(string $drive_name, string $region)
+    public function getVolumeByName(array $attributes)
     {
+        $drive_name = $attributes['drive_name'];
+        $region = $attributes['region'];
         $response = $this->doCurl("GET", "volumes?name=$drive_name&reion=$region");
         return $response;
     }
 
-    public function getSnapshotsByVolumeId(int $id)
+    public function getSnapshotsByVolumeId(array $attributes)
     {
-        $response = $this->doCurl("GET", "volumes/$id/snapshots");
+        $volume_id = $attributes['id'];
+        $response = $this->doCurl("GET", "volumes/$volume_id/snapshots");
         return $response;
     }
 
-    public function createSnapshotByVolumeId(int $id, array $attributes = null)
+    public function createSnapshotByVolumeId(array $attributes)
     {
-        $response = $this->doCurl("POST", "volumes/$id/snapshots", $attributes);
+        $volume_id = $attributes['id'];
+        $response = $this->doCurl("POST", "volumes/$volume_id/snapshots", $attributes);
         return $response;
     }
 
-    public function deleteVolumeById(int $id)
+    public function deleteVolumeById(array $attributes)
     {
-        $response = $this->doCurl("DELETE", "volumes/$id");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: HTTP code " . $response);
-            return false;
-        }
+        $volume_id = $attributes['id'];
+        $response = $this->doCurl("DELETE", "volumes/$volume_id");
+        return $response;
     }
 
-    public function deleteVolumeByName(string $drive_name, string $region)
+    public function deleteVolumeByName(array $attributes)
     {
-        $this->doCurl("DELETE", "volumes?name=$drive_name&region=$region");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: HTTP code " . $response);
-            return false;
-        }
+        $drive_name = $attributes['drive_name'];
+        $region = $attributes['region'];
+        $response = $this->doCurl("DELETE", "volumes?name=$drive_name&region=$region");
+        return $response;
     }
 }
 
@@ -226,8 +235,9 @@ class BlockStorageActionsClient extends EndpointClient
         $this->init($config);
     }
 
-    public function attachVolumeById(int $volume_id, array $attributes)
+    public function attachVolumeById(array $attributes)
     {
+        $volume_id = $attributes['id'];
         $response = $this->doCurl("POST", "volumes/$volume_id/actions", $attributes);
         return $response;
     }
@@ -238,8 +248,9 @@ class BlockStorageActionsClient extends EndpointClient
         return $response;
     }
 
-    public function deleteVolumeById(int $volume_id, array $attributes)
+    public function deleteVolumeById(array $attributes)
     {
+        $volume_id = $attributes['id'];
         $response = $this->doCurl("POST", "volumes/$volume_id/actions", $attributes);
         return $response;
     }
@@ -250,20 +261,24 @@ class BlockStorageActionsClient extends EndpointClient
         return $response;
     }
 
-    public function resizeVolume(int $volume_id, array $attributes)
+    public function resizeVolume(array $attributes)
     {
+        $volume_id = $attributes['id'];
         $response = $this->doCurl("POST", "volumes/$volume_id/actions", $attributes);
         return $response;
     }
 
-    public function getVolumeActions(int $volume_id)
+    public function getVolumeActions(array $attributes)
     {
+        $volume_id = $attributes['id'];
         $response = $this->doCurl("GET", "volumes/$volume_id/actions");
         return $response;
     }
 
-    public function getVolumeAction(int $volume_id, int $action_id)
+    public function getVolumeAction(array $attributes)
     {
+        $volume_id = $attributes['volume_id'];
+        $action_id = $attributes['action_id'];
         $response = $this->doCurl("GET", "volumes/$volume_id/actions/$action_id");
         return $response;
     }
@@ -282,8 +297,9 @@ class CertificatesClient extends EndpointClient
         return $response;
     }
 
-    public function getCertificate(int $certificate_id)
+    public function getCertificate(array $attributes)
     {
+        $certificate_id = $attributes['$certificate_id'];
         $response = $this->doCurl("GET", "certificates/$certificate_id");
         return $response;
     }
@@ -294,16 +310,11 @@ class CertificatesClient extends EndpointClient
         return $response;
     }
 
-    public function deleteCertificate(int $certificate_id)
+    public function deleteCertificate(array $attributes)
     {
-        $this->doCurl("DELETE", "certificates/$certificate_id");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
+        $certificate_id = $attributes['$certificate_id'];
+        $response = $this->doCurl("DELETE", "certificates/$certificate_id");
+        return $response;
     }
 }
 
@@ -326,22 +337,18 @@ class DomainsClient extends EndpointClient
         return $response;
     }
 
-    public function getDomain(string $domain_name)
+    public function getDomain(array $attributes)
     {
+        $domain_name = $attributes['domain_name'];
         $response = $this->doCurl("GET", "domains/$domain_name");
         return $response;
     }
 
-    public function deleteDomain(string $domain_name)
+    public function deleteDomain(array $attributes)
     {
-        $this->doCurl("DELETE", "domains/$domain_name");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
+        $domain_name = $attributes['domain_name'];
+        $response = $this->doCurl("DELETE", "domains/$domain_name");
+        return $response;
     }
 }
 
@@ -352,40 +359,42 @@ class DomainRecordsClient extends EndpointClient
         $this->init($config);
     }
 
-    public function getDomainRecords(string $domain_name)
+    public function getDomainRecords(array $attributes)
     {
+        $domain_name = $attributes['domain_name'];
         $response = $this->doCurl("GET", "domains/$domain_name/records");
         return $response;
     }
 
-    public function createDomainRecord(string $domain_name, array $attributes)
+    public function createDomainRecord(array $attributes)
     {
+        $domain_name = $attributes['domain_name'];
         $response = $this->doCurl("POST", "domains/$domain_name/records", $attributes);
         return $response;
     }
 
-    public function getDomainRecord(string $domain_name, int $record_id)
+    public function getDomainRecord(array $attributes)
     {
+        $domain_name = $attributes['domain_name'];
+        $record_id = $attributes['record_id'];
         $response = $this->doCurl("GET", "domains/$domain_name/records/$record_id");
         return $response;
     }
 
-    public function updateDomainRecord(string $domain_name, int $record_id, array $attributes)
+    public function updateDomainRecord(array $attributes)
     {
+        $domain_name = $attributes['domain_name'];
+        $record_id = $attributes['record_id'];
         $response = $this->doCurl("PUT", "domains/$domain_name/records/$record_id", $attributes);
         return $response;
     }
 
-    public function deleteDomainRecord(string $domain_name, int $record_id)
+    public function deleteDomainRecord(array $attributes)
     {
-        $this->doCurl("DELETE", "domains/$domain_name/records/$record_id");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
+        $domain_name = $attributes['domain_name'];
+        $record_id = $attributes['record_id'];
+        $response = $this->doCurl("DELETE", "domains/$domain_name/records/$record_id");
+        return $response;
     }
 }
 
@@ -402,57 +411,52 @@ class DropletsClient extends EndpointClient
         return $response;
     }
 
-    public function deleteDropletById(int $id)
+    public function deleteDropletById(array $attributes)
     {
-        $this->doCurl("DELETE", "droplets/$id");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
-    }
-
-    public function deleteDropletsByTag(string $tag_name)
-    {
-        $this->doCurl("DELETE", "droplets?tag_name=$tag_name");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: HTTP code " . $response);
-            return false;
-        }
-    }
-
-    public function getDropletActionsById(int $id)
-    {
-        $response = $this->doCurl("GET", "droplets/$id/actions");
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("DELETE", "droplets/$droplet_id");
         return $response;
     }
 
-    public function getDropletBackupsById(int $id)
+    public function deleteDropletsByTag(array $attributes)
     {
-        $response = $this->doCurl("GET", "droplets/$id/backups");
+        $tag_name = $attributes['tag_name'];
+        $response = $this->doCurl("DELETE", "droplets?tag_name=$tag_name");
         return $response;
     }
 
-    public function getDropletById(int $id)
+    public function getDropletActionsById(array $attributes)
     {
-        $response = $this->doCurl("GET", "droplets/$id");
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("GET", "droplets/$droplet_id/actions");
         return $response;
     }
 
-    public function getDropletByTag(string $tag_name)
+    public function getDropletBackupsById(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("GET", "droplets/$droplet_id/backups");
+        return $response;
+    }
+
+    public function getDropletById(array $attributes)
+    {
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("GET", "droplets/$sroplet_id");
+        return $response;
+    }
+
+    public function getDropletByTag(array $attributes)
+    {
+        $tag_name = $attributes['tag_name'];
         $response = $this->doCurl("GET", "droplets?tag_name=$tag_name");
         return $response;
     }
 
-    public function getDropletKernelsById(int $id)
+    public function getDropletKernelsById(array $attributes)
     {
-        $response = $this->doCurl("GET", "droplets/$id/kernels");
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("GET", "droplets/$droplet_id/kernels");
         return $response;
     }
 
@@ -462,9 +466,10 @@ class DropletsClient extends EndpointClient
         return $response;
     }
 
-    public function getDropletNeighborsById(int $id)
+    public function getDropletNeighborsById(array $attributes)
     {
-        $response = $this->doCurl("GET", "droplets/$id/neighbors");
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("GET", "droplets/$droplet_id/neighbors");
         return $response;
     }
 
@@ -474,15 +479,17 @@ class DropletsClient extends EndpointClient
         return $response;
     }
 
-    public function getDropletsByTag(string $tag_name)
+    public function getDropletsByTag(array $attributes)
     {
+        $tag_name = $attributes['tag_name'];
         $response = $this->doCurl("GET", "droplets?tag_name=$tag_name");
         return $response;
     }
 
-    public function getDropletSnapshotsById(int $id)
+    public function getDropletSnapshotsById(array $attributes)
     {
-        $response = $this->doCurl("GET", "droplets/$id/snapshots");
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("GET", "droplets/$droplet_id/snapshots");
         return $response;
     }
 
@@ -500,98 +507,114 @@ class DropletActionsClient extends EndpointClient
         $this->init($config);
     }
 
-    public function enableBackups(int $droplet_id, array $attributes)
+    public function enableBackups(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function disableBackups(int $droplet_id, array $attributes)
+    public function disableBackups(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function reboot(int $droplet_id, array $attributes)
+    public function reboot(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function powerCycle(int $droplet_id, array $attributes)
+    public function powerCycle(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function shutdown(int $droplet_id, array $attributes)
+    public function shutdown(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function powerOff(int $droplet_id, array $attributes)
+    public function powerOff(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function powerOn(int $droplet_id, array $attributes)
+    public function powerOn(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function restore(int $droplet_id, array $attributes)
+    public function restore(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function resetPassword(int $droplet_id, array $attributes)
+    public function resetPassword(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function resize(int $droplet_id, array $attributes)
+    public function resize(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function rebuild(int $droplet_id, array $attributes)
+    public function rebuild(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function rename(int $droplet_id, array $attributes)
+    public function rename(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function changeKernel(int $droplet_id, array $attributes)
+    public function changeKernel(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function enableIPv6(int $droplet_id, array $attributes)
+    public function enableIPv6(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function enablePrivateNetworking(int $droplet_id, array $attributes)
+    public function enablePrivateNetworking(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
 
-    public function createSnapshot(int $droplet_id, array $attributes)
+    public function createSnapshot(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("POST", "droplets/$droplet_id/actions", $attributes);
         return $response;
     }
@@ -602,8 +625,10 @@ class DropletActionsClient extends EndpointClient
 //        return $response;
 //    }
 
-    public function getAction(int $droplet_id, int $action_id)
+    public function getAction(array $attributes)
     {
+        $droplet_id = $attributes['droplet_id'];
+        $action_id = $attributes['action_id'];
         $response = $this->doCurl("GET", "droplets/$droplet_id/actions/$action_id");
         return $response;
     }
@@ -640,40 +665,39 @@ class ImagesClient extends EndpointClient
         return $response;
     }
 
-    public function getActions(int $image_id)
+    public function getActions(array $attributes)
     {
+        $image_id = $attributes['image_id'];
         $response = $this->doCurl("GET", "images/$image_id/actions");
         return $response;
     }
 
-    public function getImageById(int $image_id)
+    public function getImageById(array $attributes)
     {
+        $image_id = $attributes['image_id'];
         $response = $this->doCurl("GET", "images/$image_id");
         return $response;
     }
 
-    public function getImageBySlug(string $image_slug)
+    public function getImageBySlug(array $attributes)
     {
+        $image_slug = $attributes['image_slug'];
         $response = $this->doCurl("GET", "images/$image_slug");
         return $response;
     }
 
-    public function updateImage(int $image_id, array $attributes)
+    public function updateImage(array $attributes)
     {
+        $image_id = $attributes['image_id'];
         $response = $this->doCurl("PUT", "images/$image_id", $attributes);
         return $response;
     }
 
-    public function deleteImage(int $image_id)
+    public function deleteImage(array $attributes)
     {
-        $this->doCurl("DELETE", "images/$image_id");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
+        $image_id = $attributes['image_id'];
+        $response = $this->doCurl("DELETE", "images/$image_id");
+        return $response;
     }
 }
 
@@ -684,20 +708,24 @@ class ImageActionsClient extends EndpointClient
         $this->init($config);
     }
 
-    public function transferImage(int $image_id, array $attributes)
+    public function transferImage(array $attributes)
     {
+        $image_id = $attributes['image_id'];
         $response = $this->doCurl("POST", "images/$image_id/actions", $attributes);
         return $response;
     }
 
-    public function convertImageToSnapshot(int $image_id, array $attributes)
+    public function convertImageToSnapshot(array $attributes)
     {
+        $image_id = $attributes['image_id'];
         $response = $this->doCurl("POST", "images/$image_id/actions", $attributes);
         return $response;
     }
 
-    public function getAction(int $image_id, int $action_id)
+    public function getAction(array $attributes)
     {
+        $image_id = $attributes['image_id'];
+        $action_id = $attributes['action_id'];
         $response = $this->doCurl("GET", "images/$image_id/actions/$action_id");
         return $response;
     }
@@ -717,8 +745,9 @@ class LoadBalancersClient extends EndpointClient
         return $response;
     }
 
-    public function getLoadBalancer(int $load_balancer_id)
+    public function getLoadBalancer(array $attributes)
     {
+        $load_balancer_id = $attributes['load_balancer_id'];
         $response = $this->doCurl("GET", "load_balancers/$load_balancer_id");
         return $response;
     }
@@ -735,52 +764,39 @@ class LoadBalancersClient extends EndpointClient
         return $response;
     }
 
-    public function deleteLoadBalancer(int $load_balancer_id)
+    public function deleteLoadBalancer(array $attributes)
     {
-        $this->doCurl("DELETE", "load_balancers/$load_balancer_id");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
+        $load_balancer_id = $attributes['load_balancer_id'];
+        $response = $this->doCurl("DELETE", "load_balancers/$load_balancer_id");
+        return $response;
     }
 
-    public function addDroplets(int $load_balancer_id, array $attributes)
+    public function addDroplets(array $attributes)
     {
+        $load_balancer_id = $attributes['load_balancer_id'];
         $response = $this->doCurl("POST", "load_balancers/$load_balancer_id/droplets", $attributes);
         return $response;
     }
 
-    public function removeDroplets(int $load_balancer_id, array $attributes)
+    public function removeDroplets(array $attributes)
     {
-        $this->doCurl("DELETE", "load_balancers/$load_balancer_id/droplets", $attributes);
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
+        $load_balancer_id = $attributes['load_balancer_id'];
+        $response = $this->doCurl("DELETE", "load_balancers/$load_balancer_id/droplets", $attributes);
+        return $response;
     }
 
-    public function addForwardingRules(int $load_balancer_id, array $attributes)
+    public function addForwardingRules(array $attributes)
     {
+        $load_balancer_id = $attributes['load_balancer_id'];
         $response = $this->doCurl("POST", "load_balancers/$load_balancer_id/forwarding_rules", $attributes);
         return $response;
     }
 
-    public function removeForwardingRules(int $load_balancer_id, array $attributes)
+    public function removeForwardingRules(array $attributes)
     {
-        $this->doCurl("DELETE", "load_balancers/$load_balancer_id/forwarding_rules", $attributes);
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
+        $load_balancer_id = $attributes['load_balancer_id'];
+        $response = $this->doCurl("DELETE", "load_balancers/$load_balancer_id/forwarding_rules", $attributes);
+        return $response;
     }
 }
 
@@ -809,22 +825,17 @@ class SnapshotsClient extends EndpointClient
         return $response;
     }
 
-    public function getSnapshotById(int $snapshot_id)
+    public function getSnapshotById(array $attributes)
     {
+        $snapshot_id = $attributes['snapshot_id'];
         $response = $this->doCurl("GET", "snapshots/$snapshot_id");
         return $response;
     }
 
-    public function deleteSnapshot(int $snapshot_id)
+    public function deleteSnapshot(array $attributes)
     {
-        $this->doCurl("DELETE", "snapshots/$snapshot_id");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
+        $response = $this->doCurl("DELETE", "snapshots/$snapshot_id");
+        return $response;
     }
 }
 
@@ -847,67 +858,60 @@ class SSHKeysClient extends EndpointClient
         return $response;
     }
 
-    public function getKeyById(int $key_id)
+    public function getKeyById(array $attributes)
     {
+        $key_id = $attributes['key_id'];
         $response = $this->doCurl("GET", "account/keys/$key_id");
         return $response;
     }
 
-    public function getKeyByFingerprint(string $key_fingerprint)
+    public function getKeyByFingerprint(array $attributes)
     {
+        $key_fingerprint = $attributes['key_fingerprint'];
         $response = $this->doCurl("GET", "account/keys/$key_fingerprint");
         return $response;
     }
 
-    public function updateKeyById(int $key_id, array $attributes)
+    public function updateKeyById(array $attributes)
     {
+        $key_id = $attributes['key_id'];
         $response = $this->doCurl("PUT", "account/keys/$key_id", $attributes);
         return $response;
     }
 
-    public function updateKeyByFingerprint(string $key_fingerprint, array $attributes)
+    public function updateKeyByFingerprint(array $attributes)
     {
+        $key_fingerprint = $attributes['key_fingerprint'];
         $response = $this->doCurl("PUT", "account/keys/$key_fingerprint", $attributes);
         return $response;
     }
 
-    public function deleteKeyById(int $key_id)
+    public function deleteKeyById(array $attributes)
     {
-        $this->doCurl("DELETE", "account/keys/$key_id");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
+        $key_id = $attributes['key_id'];
+        $response = $this->doCurl("DELETE", "account/keys/$key_id");
+        return $response;
     }
 
-    public function deleteKeyByFingerprint(string $key_fingerprint)
+    public function deleteKeyByFingerprint(array $attributes)
     {
-        $this->doCurl("DELETE", "account/keys/$key_fingerprint");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
+        $key_fingerprint = $attributes['key_fingerprint'];
+        $response = $this->doCurl("DELETE", "account/keys/$key_fingerprint");
+        return $response;
     }
 
     /**
      *  The API docs use the term "destroy" instead of "delete" for SSH keys.
      *  These functions were created as aliases to avoid potential confusion.
      */
-    public function destroyKeyById(int $key_id)
+    public function destroyKeyById(array $attributes)
     {
-        return $this->deleteKeyById($key_id);
+        return $this->deleteKeyById($attributes);
     }
 
-    public function destroyKeyByFingerprint(string $key_fingerprint)
+    public function destroyKeyByFingerprint(array $attributes)
     {
-        return $this->deleteKeyByFingerprint($key_fingerprint);
-
+        return $this->deleteKeyByFingerprint($attributes);
     }
 }
 
@@ -958,22 +962,18 @@ class FloatingIpsClient extends EndpointClient
         return $response;
     }
 
-    public function getFloatingIp(string $ip_address)
+    public function getFloatingIp(array $attributes)
     {
+        $ip_address = $attribute['ip_address'];
         $response = $this->doCurl("GET", "floating_ips/$ip_address");
         return $response;
     }
 
-    public function deleteFloatingIp(string $ip_address)
+    public function deleteFloatingIp(array $attributes)
     {
-        $this->doCurl("DELETE", "floating_ips/$ip_address");
-        $response = $this->getLastHttpResponse();
-        if ($response >= 200 && $response < 300) {
-            return true;
-        } else {
-            throw new Exception("API Error: " . $response );
-            return false;
-        }
+        $ip_address = $attribute['ip_address'];
+        $response = $this->doCurl("DELETE", "floating_ips/$ip_address");
+        return $response;
     }
 }
 
@@ -984,29 +984,31 @@ class FloatingIpActionsClient extends EndpointClient
         $this->init($config);
     }
 
-    public function assignFloatingIp(string $ip_address, int $droplet_id)
+    public function assignFloatingIp(array $attributes)
     {
-        $attributes["type"] = "assign";
-        $attributes["droplet_id"] = $droplet_id;
+        $ip_address = $attribute['ip_address'];
         $response = $this->doCurl("POST", "floating_ips/$ip_address/actions", $attributes);
         return $response;
     }
 
-    public function unassignFloatingIp(string $ip_address)
+    public function unassignFloatingIp(array $attributes)
     {
-        $attributes["type"] = "unassign";
+        $ip_address = $attribute['ip_address'];
         $response = $this->doCurl("POST", "floating_ips/$ip_address/actions", $attributes);
         return $response;
     }
 
-    public function getActions(string $ip_address)
+    public function getActions(array $attributes)
     {
+        $ip_address = $attribute['ip_address'];
         $response = $this->doCurl("GET", "floating_ips/$ip_address/actions");
         return $response;
     }
 
-    public function getActionById(string $ip_address, int $action_id)
+    public function getActionById(array $attributes)
     {
+        $ip_address = $attribute['ip_address'];
+        $action_id = $attribute['action_id'];
         $response = $this->doCurl("GET", "floating_ips/$ip_address/actions/$action_id");
         return $response;
     }
@@ -1019,15 +1021,15 @@ class TagsClient extends EndpointClient
         $this->init($config);
     }
 
-    public function createTag(string $tag_name)
+    public function createTag(array $attributes)
     {
-        $attributes["tag_name"] = $tag_name;
         $response = $this->doCurl("POST", "tags", $attributes);
         return $response;
     }
 
-    public function getTag(string $tag_name)
+    public function getTag(array $attributes)
     {
+        $tag_name = $attributes['tag_name'];
         $response = $this->doCurl("GET", "tags/$tag_name");
         return $response;
     }
@@ -1038,24 +1040,23 @@ class TagsClient extends EndpointClient
         return $response;
     }
 
-    public function tagResource(string $tag_name, int $resource_id, string $resource_type)
+    public function tagResource(array $attributes)
     {
-        $attributes["resource_id"] = $resource_id;
-        $attributes["resource_type"] = $resource_type;
+        $tag_name = $attributes['tag_name'];
         $response = $this->doCurl("POST", "tags/$tag_name/resources", $attributes);
         return $response;
     }
 
-    public function untagResource(string $tag_name, int $resource_id, string $resource_type)
+    public function untagResource(array $attributes)
     {
-        $attributes["resource_id"] = $resource_id;
-        $attributes["resource_type"] = $resource_type;
+        $tag_name = $attributes['tag_name'];
         $response = $this->doCurl("DELETE", "tags/$tag_name/resources", $attributes);
         return $response;
     }
 
-    public function deleteTag(string $tag_name)
+    public function deleteTag(array $attributes)
     {
+        $tag_name = $attributes['tag_name'];
         $response = $this->doCurl("DELETE", "tags/$tag_name");
         return $response;
     }
