@@ -58,14 +58,14 @@ abstract class EndpointClient
     protected $access_token;
     protected $html_headers;
 
-    protected function init(array $config)
+    final protected function init(array $config)
     {
         $this->access_token = $config["access_token"];
         $this->html_headers[] = "Content-type: application/json";
         $this->html_headers[] = "Authorization: Bearer " . $this->access_token;
     }
 
-    protected function doCurl(string $method, string $endpoint, array $args = null)
+    final protected function doCurl(string $method, string $endpoint, array $args = null)
     {
         $this->curl_handle = curl_init();
         curl_setopt($this->curl_handle, CURLOPT_HTTPHEADER, $this->html_headers);
@@ -122,7 +122,7 @@ abstract class EndpointClient
         return $return_response;
     }
 
-    protected function getLastHttpResponse()
+    final protected function getLastHttpResponse()
     {
         $info = curl_getinfo($this->curl_handle);
         return $info["http_code"];
