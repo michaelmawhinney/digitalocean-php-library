@@ -2,6 +2,9 @@
 
 **DigitalOcean PHP Library** is a set of PHP classes designed to interact with the DigitalOcean API v2. The aim of this project is to create a simple library that can be included easily without an autoloader like Composer.
 
+* TOC
+{:toc}
+
 ## Requirements
 
 * PHP 5.3+ with `cURL` enabled
