@@ -158,7 +158,7 @@ class ActionsClient extends EndpointClient
 
     public function getActionById(array $attributes)
     {
-        $action_id = $attributes['id'];
+        $action_id = $attributes['action_id'];
         $response = $this->doCurl("GET", "actions/$action_id");
         return $response;       
     }
@@ -185,8 +185,8 @@ class BlockStorageClient extends EndpointClient
 
     public function getVolumeById(array $attributes)
     {
-        $volume_id = $attributes['id'];
-        $response = $this->doCurl("GET", "volumes/$volumeid");
+        $volume_id = $attributes['volume_id'];
+        $response = $this->doCurl("GET", "volumes/$volume_id");
         return $response;
     }
 
@@ -200,21 +200,21 @@ class BlockStorageClient extends EndpointClient
 
     public function getSnapshotsByVolumeId(array $attributes)
     {
-        $volume_id = $attributes['id'];
+        $volume_id = $attributes['volume_id'];
         $response = $this->doCurl("GET", "volumes/$volume_id/snapshots");
         return $response;
     }
 
     public function createSnapshotByVolumeId(array $attributes)
     {
-        $volume_id = $attributes['id'];
+        $volume_id = $attributes['volume_id'];
         $response = $this->doCurl("POST", "volumes/$volume_id/snapshots", $attributes);
         return $response;
     }
 
     public function deleteVolumeById(array $attributes)
     {
-        $volume_id = $attributes['id'];
+        $volume_id = $attributes['volume_id'];
         $response = $this->doCurl("DELETE", "volumes/$volume_id");
         return $response;
     }
@@ -237,7 +237,7 @@ class BlockStorageActionsClient extends EndpointClient
 
     public function attachVolumeById(array $attributes)
     {
-        $volume_id = $attributes['id'];
+        $volume_id = $attributes['volume_id'];
         $response = $this->doCurl("POST", "volumes/$volume_id/actions", $attributes);
         return $response;
     }
@@ -250,7 +250,7 @@ class BlockStorageActionsClient extends EndpointClient
 
     public function deleteVolumeById(array $attributes)
     {
-        $volume_id = $attributes['id'];
+        $volume_id = $attributes['volume_id'];
         $response = $this->doCurl("POST", "volumes/$volume_id/actions", $attributes);
         return $response;
     }
@@ -263,14 +263,14 @@ class BlockStorageActionsClient extends EndpointClient
 
     public function resizeVolume(array $attributes)
     {
-        $volume_id = $attributes['id'];
+        $volume_id = $attributes['volume_id'];
         $response = $this->doCurl("POST", "volumes/$volume_id/actions", $attributes);
         return $response;
     }
 
     public function getVolumeActions(array $attributes)
     {
-        $volume_id = $attributes['id'];
+        $volume_id = $attributes['volume_id'];
         $response = $this->doCurl("GET", "volumes/$volume_id/actions");
         return $response;
     }
