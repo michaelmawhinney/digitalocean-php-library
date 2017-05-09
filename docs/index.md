@@ -16,7 +16,7 @@ $client = new DigitalOceanClient([
 
 ### method getUserInformation
 
-https://developers.digitalocean.com/documentation/v2/#get-user-information
+[https://developers.digitalocean.com/documentation/v2/#get-user-information/]
 
 ```
 $result = $client->Account->getUserInformation();
@@ -26,7 +26,7 @@ $result = $client->Account->getUserInformation();
 
 ### method getActions
 
-https://developers.digitalocean.com/documentation/v2/#list-all-actions
+[https://developers.digitalocean.com/documentation/v2/#list-all-actions]
 
 ```
 $result = $client->Actions->getActions();
@@ -34,7 +34,7 @@ $result = $client->Actions->getActions();
 
 ### method getActionsById
 
-https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-action
+[https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-action]
 
 ```
 $result = $client->Actions->getActionsById([/* ... */]);
