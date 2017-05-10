@@ -52,6 +52,8 @@ class DigitalOceanClient
     }
 }
 
+class DigitalOceanClientException extends Exception {}
+
 abstract class EndpointClient
 {
     protected $curl_handle;
@@ -88,7 +90,7 @@ abstract class EndpointClient
                 curl_setopt($this->curl_handle, CURLOPT_POSTFIELDS, json_encode($args));
                 break;
             default:
-                throw new Exception("Library Error: Unknown HTTP Verb: $method");
+                throw new DigitalOceanClientException("Library Error: Unknown HTTP Verb: $method");
                 return false;
         }
 
@@ -96,11 +98,11 @@ abstract class EndpointClient
         $return_response = json_decode($curl_response, true);
 
         if( $curl_response === false || curl_errno($this->curl_handle)!== 0 ) {
-            throw new Exception("cURL Error: " . curl_error($this->curl_handle));
+            throw new DigitalOceanClientException("cURL Error: " . curl_error($this->curl_handle));
             $return_response = false;
         }
         else if( isset($return_response["id"]) && $return_response["id"]=="unauthorized" ) {
-            throw new Exception("API Error: " . $return_response["message"]);
+            throw new DigitalOceanClientException("API Error: " . $return_response["message"]);
             $return_response = false;
         }
         else if( $method == "DELETE" ) {
@@ -108,7 +110,7 @@ abstract class EndpointClient
             if ($http_response >= 200 && $http_response < 300) {
                 $return_response = true;
             } else {
-                throw new Exception("API Error: HTTP code " . $curl_response);
+                throw new DigitalOceanClientException("API Error: HTTP code " . $curl_response);
                 $return_response = false;
             }
         }
