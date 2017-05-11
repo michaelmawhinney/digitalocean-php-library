@@ -16,7 +16,7 @@ $client = new DigitalOceanClient([
 
 ### method getUserInformation
 
-<https://developers.digitalocean.com/documentation/v2/#get-user-information/>
+<https://developers.digitalocean.com/documentation/v2/#get-user-information>
 
 ```
 $result = $client->Account->getUserInformation();
