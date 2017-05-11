@@ -55,15 +55,7 @@ $result = $client->Actions->getActionById([
 <https://developers.digitalocean.com/documentation/v2/#list-all-block-storage-volumes>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->BlockStorage->getVolumes();
 ```
 
 ### method createVolume
@@ -71,13 +63,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-block-storage-volume>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorage->createVolume([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorage->createVolume([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -87,13 +79,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-block-storage-volume>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorage->getVolumeById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorage->getVolumeById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -103,13 +95,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-block-storage-volume-by-name>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorage->getVolumeByName([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorage->getVolumeByName([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -119,13 +111,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-snapshots-for-a-volume>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorage->getSnapshotsByVolumeId([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorage->getSnapshotsByVolumeId([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -135,13 +127,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#create-snapshot-from-a-volume>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorage->createSnapshotByVolumeId([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorage->createSnapshotByVolumeId([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -151,13 +143,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#delete-a-block-storage-volume>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorage->deleteVolumeById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorage->deleteVolumeById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -167,13 +159,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#delete-a-block-storage-volume-by-name>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorage->deleteVolumeByName([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorage->deleteVolumeByName([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -186,13 +178,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#attach-a-block-storage-volume-to-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorageActions->attachVolumeById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorageActions->attachVolumeById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -202,13 +194,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#attach-a-block-storage-volume-to-a-droplet-by-name>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorageActions->attachVolumeByName([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorageActions->attachVolumeByName([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -218,13 +210,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#remove-a-block-storage-volume-from-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorageActions->deleteVolumeById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorageActions->deleteVolumeById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -234,13 +226,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#remove-a-block-storage-volume-from-a-droplet-by-name>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorageActions->deleteVolumeByName([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorageActions->deleteVolumeByName([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -250,13 +242,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#resize-a-volume>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorageActions->resizeVolume([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorageActions->resizeVolume([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -266,13 +258,13 @@ $result = $client->->([
 https://developers.digitalocean.com/documentation/v2/#list-all-actions-for-a-volume<>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorageActions->getVolumeActions([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorageActions->getVolumeActions([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -282,13 +274,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-volume-action>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->BlockStorageActions->getVolumeAction([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->BlockStorageActions->getVolumeAction([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -300,13 +292,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-certificate>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Certificates->createCertificate([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Certificates->createCertificate([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -316,13 +308,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-certificate>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Certificates->getCertificate([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Certificates->getCertificate([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -332,15 +324,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-certificates>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Certificates->getCertificates();
 ```
 
 ### method deleteCertificate
@@ -348,13 +332,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#delete-a-certificate>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Certificates->deleteCertificate([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Certificates->deleteCertificate([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -367,15 +351,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-domains>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Domains->getDomains();
 ```
 
 ### method createDomain
@@ -383,13 +359,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-domain>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Domains->createDomain([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Domains->createDomain([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -399,13 +375,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-domain>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Domains->getDomain([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Domains->getDomain([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -415,13 +391,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#delete-a-domain>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Domains->deleteDomain([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Domains->deleteDomain([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -434,13 +410,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-domain-records>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DomainRecords->getDomainRecords([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DomainRecords->getDomainRecords([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -450,13 +426,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-domain-record>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DomainRecords->createDomainRecord([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DomainRecords->createDomainRecord([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -466,13 +442,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-domain-record>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DomainRecords->getDomainRecord([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DomainRecords->getDomainRecord([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -482,13 +458,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#update-a-domain-record>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DomainRecords->updateDomainRecord([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DomainRecords->updateDomainRecord([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -498,31 +474,31 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#delete-a-domain-record>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DomainRecords->deleteDomainRecord([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DomainRecords->deleteDomainRecord([
     '' => '<>' // REQUIRED
 ]);
 ```
 
-## class DropletClient
+## class DropletsClient
 
 ### method createDroplet
 
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Droplets->createDroplet([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Droplets->createDroplet([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -532,13 +508,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-droplet-by-id>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Droplets->getDropletById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Droplets->getDropletById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -548,15 +524,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-droplets>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Droplets->getDroplets();
 ```
 
 ### method getDropletsByTag
@@ -564,13 +532,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#listing-droplets-by-tag>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Droplets->getDropletsByTag([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Droplets->getDropletsByTag([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -580,13 +548,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-available-kernels-for-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Droplets->getKernelsByDropletId([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Droplets->getKernelsByDropletId([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -596,13 +564,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-snapshots-for-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Droplets->getSnapshotsByDropletId([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Droplets->getSnapshotsByDropletId([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -612,13 +580,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-backups-for-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Droplets->getBackupsByDropletId([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Droplets->getBackupsByDropletId([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -628,13 +596,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-actions-for-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Droplets->getActionsByDropletId([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Droplets->getActionsByDropletId([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -644,13 +612,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#delete-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Droplets->deleteDropletById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Droplets->deleteDropletById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -660,13 +628,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#deleting-droplets-by-tag>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Droplets->deleteDropletsByTag([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Droplets->deleteDropletsByTag([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -676,13 +644,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-neighbors-for-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Droplets->getNeighborsByDropletId([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Droplets->getNeighborsByDropletId([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -692,15 +660,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-droplet-neighbors>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Droplets->getNeighbors();
 ```
 
 ## class DropletActionsClient
@@ -710,13 +670,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#enable-backups>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->enableBackups([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->enableBackups([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -726,13 +686,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#disable-backups>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->disableBackups([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->disableBackups([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -742,13 +702,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#reboot-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->reboot([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->reboot([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -758,13 +718,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#power-cycle-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->powerCycle([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->powerCycle([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -774,13 +734,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#shutdown-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->shutdown([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->shutdown([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -790,13 +750,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#power-off-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->powerOff([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->powerOff([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -806,13 +766,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#power-on-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->powerOn([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->powerOn([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -822,13 +782,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#restore-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->restore([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->restore([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -838,13 +798,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#password-reset-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->resetPassword([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->resetPassword([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -854,13 +814,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#resize-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->resize([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->resize([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -870,13 +830,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#rebuild-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->rebuild([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->rebuild([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -886,13 +846,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#rename-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->rename([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->rename([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -902,13 +862,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#change-the-kernel>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->changeKernel([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->changeKernel([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -918,13 +878,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#enable-ipv6>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->enableIPv6([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->enableIPv6([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -934,13 +894,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#enable-private-networking>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->enablePrivateNetworking([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->enablePrivateNetworking([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -950,13 +910,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#snapshot-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->createSnapshot([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->createSnapshot([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -966,13 +926,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#acting-on-tagged-droplets>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->doActionByTag([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->doActionByTag([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -982,13 +942,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-a-droplet-action>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->DropletActions->getAction([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->DropletActions->getAction([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1001,15 +961,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-images>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Images->getImages();
 ```
 
 ### method getDistributionImages
@@ -1017,15 +969,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-distribution-images>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Images->getDistributionImages();
 ```
 
 ### method getApplicationImages
@@ -1033,15 +977,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-application-images>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Images->getApplicationImages();
 ```
 
 ### method getUserImages
@@ -1049,15 +985,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-a-user-s-images>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Images->getUserImages();
 ```
 
 ### method getActions
@@ -1065,13 +993,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-actions-for-an-image>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Images->getActions([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Images->getActions([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1081,13 +1009,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-image-by-id>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Images->getImageById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Images->getImageById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1097,13 +1025,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-image-by-slug>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Images->getImageBySlug([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Images->getImageBySlug([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1113,13 +1041,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#update-an-image>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Images->updateImage([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Images->updateImage([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1129,13 +1057,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#delete-an-image>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Images->deleteImage([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Images->deleteImage([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1148,13 +1076,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#transfer-an-image>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->ImageActions->transferImage([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->ImageActions->transferImage([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1164,13 +1092,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#convert-an-image-to-a-snapshot>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->ImageActions->convertImageToSnapshot([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->ImageActions->convertImageToSnapshot([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1180,13 +1108,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-image-action>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->ImageActions->getAction([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->ImageActions->getAction([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1199,13 +1127,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-load-balancer>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->LoadBalancers->createLoadBalancer([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->LoadBalancers->createLoadBalancer([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1215,13 +1143,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-load-balancer>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->LoadBalancers->getLoadBalancer([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->LoadBalancers->getLoadBalancer([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1231,15 +1159,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-load-balancers>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->LoadBalancers->getLoadBalancers();
 ```
 
 ### method updateLoadBalancer
@@ -1247,13 +1167,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#update-a-load-balancer>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->LoadBalancers->updateLoadBalancer([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->LoadBalancers->updateLoadBalancer([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1263,13 +1183,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#delete-a-load-balancer>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->LoadBalancers->deleteLoadBalancer([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->LoadBalancers->deleteLoadBalancer([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1279,13 +1199,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#add-droplets-to-a-load-balancer>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->LoadBalancers->addDroplets([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->LoadBalancers->addDroplets([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1295,13 +1215,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#remove-droplets-from-a-load-balancer>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->LoadBalancers->removeDroplets([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->LoadBalancers->removeDroplets([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1311,13 +1231,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#add-forwarding-rules-to-a-load-balancer>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->LoadBalancers->addForwardingRules([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->LoadBalancers->addForwardingRules([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1327,13 +1247,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#remove-forwarding-rules-from-a-load-balancer>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->LoadBalancers->removeForwardingRules([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->LoadBalancers->removeForwardingRules([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1346,15 +1266,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-snapshots>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Snapshots->getSnapshots();
 ```
 
 ### method getDropletSnapshots
@@ -1362,15 +1274,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-droplet-snapshots>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Snapshots->getDropletSnapshots();
 ```
 
 ### method getVolumeSnapshots
@@ -1378,15 +1282,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-volume-snapshots>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Snapshots->getVolumeSnapshots();
 ```
 
 ### method getSnapshotById
@@ -1394,13 +1290,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-snapshot-by-id>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Snapshots->getSnapshotById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Snapshots->getSnapshotById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1410,13 +1306,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#delete-a-snapshot>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Snapshots->deleteSnapshot([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Snapshots->deleteSnapshot([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1429,15 +1325,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-keys>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->SSHKeys->getKeys();
 ```
 
 ### method createKey
@@ -1445,13 +1333,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-key>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->SSHKeys->createKey([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->SSHKeys->createKey([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1461,13 +1349,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-key>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->SSHKeys->getKeyById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->SSHKeys->getKeyById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1477,13 +1365,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-key>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->SSHKeys->getKeyByFingerprint([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->SSHKeys->getKeyByFingerprint([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1493,13 +1381,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#update-a-key>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->SSHKeys->updateKeyById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->SSHKeys->updateKeyById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1509,13 +1397,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#update-a-key>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->SSHKeys->updateKeyByFingerprint([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->SSHKeys->updateKeyByFingerprint([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1525,13 +1413,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#destroy-a-key>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->SSHKeys->deleteKeyById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->SSHKeys->deleteKeyById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1541,13 +1429,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#destroy-a-key>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->SSHKeys->deleteKeyByFingerprint([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->SSHKeys->deleteKeyByFingerprint([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1560,17 +1448,8 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-regions>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Regions->getRegions();
 ```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
-```
-
 
 ## class SizesClient
 
@@ -1579,17 +1458,8 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-sizes>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Sizes->getSizes();
 ```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
-```
-
 
 ## class FloatingIpsClient
 
@@ -1598,15 +1468,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-floating-ips>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->FloatingIps->getFloatingIps();
 ```
 
 ### method createFloatingIp
@@ -1614,13 +1476,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-floating-ip-assigned-to-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->FloatingIps->createFloatingIp([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->FloatingIps->createFloatingIp([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1630,13 +1492,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-floating-ip>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->FloatingIps->getFloatingIp([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->FloatingIps->getFloatingIp([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1646,13 +1508,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#delete-a-floating-ips>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->FloatingIps->deleteFloatingIp([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->FloatingIps->deleteFloatingIp([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1665,13 +1527,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#assign-a-floating-ip-to-a-droplet>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->FloatingIpActions->assignFloatingIp([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->FloatingIpActions->assignFloatingIp([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1681,13 +1543,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#unassign-a-floating-ip>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->FloatingIpActions->unassignFloatingIp([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->FloatingIpActions->unassignFloatingIp([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1697,13 +1559,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-actions-for-a-floating-ip>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->FloatingIpActions->getActions([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->FloatingIpActions->getActions([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1713,13 +1575,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-floating-ip-action>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->FloatingIpActions->getActionById([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->FloatingIpActions->getActionById([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1732,13 +1594,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-tag>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Tags->createTag([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Tags->createTag([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1748,13 +1610,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#retrieve-a-tag>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Tags->getTag([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Tags->getTag([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1764,15 +1626,7 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#list-all-tags>
 
 ```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
+$result = $client->Tags->getTags();
 ```
 
 ### method tagResource
@@ -1780,13 +1634,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#tag-a-resource>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Tags->tagResource([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Tags->tagResource([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1796,13 +1650,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#untag-a-resource>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Tags->untagResource([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Tags->untagResource([
     '' => '<>' // REQUIRED
 ]);
 ```
@@ -1812,13 +1666,13 @@ $result = $client->->([
 <https://developers.digitalocean.com/documentation/v2/#delete-a-tag>
 
 ```
-$result = $client->->([/* ... */]);
+$result = $client->Tags->deleteTag([/* ... */]);
 ```
 
 #### Parameter Syntax
 
 ```
-$result = $client->->([
+$result = $client->Tags->deleteTag([
     '' => '<>' // REQUIRED
 ]);
 ```
