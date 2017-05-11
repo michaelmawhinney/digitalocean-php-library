@@ -8,26 +8,105 @@
 class DigitalOceanClient
 {
     const API_BASE_URL = "https://api.digitalocean.com/v2/";
+
+    /**
+     * @var AccountClient
+     */
     public $Account;
+
+    /**
+     * @var ActionsClient
+     */
     public $Actions;
+
+    /**
+     * @var BlockStorageClient
+     */
     public $BlockStorage;
+
+    /**
+     * @var BlockStorageActionsClient
+     */
     public $BlockStorageActions;
+
+    /**
+     * @var CertificatesClient
+     */
     public $Certificates;
+
+    /**
+     * @var DomainsClient
+     */
     public $Domains;
+
+    /**
+     * @var DomainRecordsClient
+     */
     public $DomainRecords;
+
+    /**
+     * @var DropletsClient
+     */
     public $Droplets;
+
+    /**
+     * @var DropletActionsClient
+     */
     public $DropletActions;
+
+    /**
+     * @var ImagesClient
+     */
     public $Images;
+
+    /**
+     * @var ImageActionsClient
+     */
     public $ImageActions;
+
+    /**
+     * @var LoadBalancersClient
+     */
     public $LoadBalancers;
+
+    /**
+     * @var SnapshotsClient
+     */
     public $Snapshots;
+
+    /**
+     * @var SSHKeysClient
+     */
     public $SSHKeys;
+
+    /**
+     * @var RegionsClient
+     */
     public $Regions;
+
+    /**
+     * @var SizesClient
+     */
     public $Sizes;
+
+    /**
+     * @var FloatingIpsClient
+     */
     public $FloatingIps;
+
+    /**
+     * @var FloatingIpActionsClient
+     */
     public $FloatingIpActions;
+
+    /**
+     * @var TagsClient
+     */
     public $Tags;
 
+    /**
+     * @param array $config An array containing the API access token
+     */
     public function __construct(array $config)
     {
         $this->Account = new AccountClient($config);
@@ -56,10 +135,26 @@ class DigitalOceanClientException extends Exception {}
 
 abstract class EndpointClient
 {
+    /**
+     * @var resource
+     */
     protected $curl_handle;
+
+    /**
+     * @var string
+     */
     protected $access_token;
+
+    /**
+     * @var array
+     */
     protected $html_headers;
 
+    /**
+     * Initialize the endpoint with the supplied values.
+     * 
+     * @param array $config An array containing the API access token
+     */
     final protected function init(array $config)
     {
         $this->access_token = $config["access_token"];
@@ -67,6 +162,15 @@ abstract class EndpointClient
         $this->html_headers[] = "Authorization: Bearer " . $this->access_token;
     }
 
+    /**
+     * Execute a cURL session
+     *
+     * @param string $method
+     * @param string $endpoint
+     * @param array  $args
+     *
+     * @return array|boolean
+     */
     final protected function doCurl(string $method, string $endpoint, array $args = null)
     {
         $this->curl_handle = curl_init();
@@ -75,37 +179,35 @@ abstract class EndpointClient
         curl_setopt($this->curl_handle, CURLOPT_RETURNTRANSFER, true);
 
         switch($method) {
-            case "DELETE":
-            case "PUT":
-                curl_setopt($this->curl_handle, CURLOPT_CUSTOMREQUEST, $method);
-                curl_setopt($this->curl_handle, CURLOPT_POSTFIELDS, json_encode($args));
-                break;
-            case "GET":
-                break;
-            case "HEAD":
-                curl_setopt($this->curl_handle, CURLOPT_NOBODY, true);
-                break;
-            case "POST":
-                curl_setopt($this->curl_handle, CURLOPT_POST, true);
-                curl_setopt($this->curl_handle, CURLOPT_POSTFIELDS, json_encode($args));
-                break;
-            default:
-                throw new DigitalOceanClientException("Library Error: Unknown HTTP Verb: $method");
-                return false;
+        case "DELETE":
+        case "PUT":
+            curl_setopt($this->curl_handle, CURLOPT_CUSTOMREQUEST, $method);
+            curl_setopt($this->curl_handle, CURLOPT_POSTFIELDS, json_encode($args));
+            break;
+        case "GET":
+            break;
+        case "HEAD":
+            curl_setopt($this->curl_handle, CURLOPT_NOBODY, true);
+            break;
+        case "POST":
+            curl_setopt($this->curl_handle, CURLOPT_POST, true);
+            curl_setopt($this->curl_handle, CURLOPT_POSTFIELDS, json_encode($args));
+            break;
+        default:
+            throw new DigitalOceanClientException("Library Error: Unknown HTTP Verb: $method");
+            return false;
         }
 
         $curl_response = curl_exec($this->curl_handle);
         $return_response = json_decode($curl_response, true);
 
-        if( $curl_response === false || curl_errno($this->curl_handle)!== 0 ) {
+        if ($curl_response === false || curl_errno($this->curl_handle)!== 0) {
             throw new DigitalOceanClientException("cURL Error: " . curl_error($this->curl_handle));
             $return_response = false;
-        }
-        else if( isset($return_response["id"]) && $return_response["id"]=="unauthorized" ) {
+        } else if (isset($return_response["id"]) && $return_response["id"]=="unauthorized") {
             throw new DigitalOceanClientException("API Error: " . $return_response["message"]);
             $return_response = false;
-        }
-        else if( $method == "DELETE" ) {
+        } else if ($method == "DELETE") {
             $http_response = $this->getLastHttpResponse();
             if ($http_response >= 200 && $http_response < 300) {
                 $return_response = true;
@@ -113,9 +215,7 @@ abstract class EndpointClient
                 throw new DigitalOceanClientException("API Error: HTTP code " . $curl_response);
                 $return_response = false;
             }
-        }
-        else 
-        {
+        } else {
             /* do nothing */
         }
 
@@ -124,6 +224,11 @@ abstract class EndpointClient
         return $return_response;
     }
 
+    /**
+     * Get the last HTTP response of the cURL session.
+     *
+     * @return int
+     */
     final protected function getLastHttpResponse()
     {
         $info = curl_getinfo($this->curl_handle);
@@ -133,11 +238,17 @@ abstract class EndpointClient
 
 class AccountClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token 
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
     }
 
+    /**
+     * @return  array|boolean
+     */
     public function getUserInformation()
     {
         $response = $this->doCurl("GET", "account");
@@ -147,6 +258,9 @@ class AccountClient extends EndpointClient
 
 class ActionsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -168,6 +282,9 @@ class ActionsClient extends EndpointClient
 
 class BlockStorageClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -232,6 +349,9 @@ class BlockStorageClient extends EndpointClient
 
 class BlockStorageActionsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -288,6 +408,9 @@ class BlockStorageActionsClient extends EndpointClient
 
 class CertificatesClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -322,6 +445,9 @@ class CertificatesClient extends EndpointClient
 
 class DomainsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -356,6 +482,9 @@ class DomainsClient extends EndpointClient
 
 class DomainRecordsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -402,6 +531,9 @@ class DomainRecordsClient extends EndpointClient
 
 class DropletsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -504,6 +636,9 @@ class DropletsClient extends EndpointClient
 
 class DropletActionsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -621,11 +756,11 @@ class DropletActionsClient extends EndpointClient
         return $response;
     }
 
-//    public function doActionByTag($tag_name, $attributes)
-//    {
-//        $response = $this->doCurl("POST", "droplets/actions?tag_name=$tag_name", $attributes);
-//        return $response;
-//    }
+    //public function doActionByTag($tag_name, $attributes)
+    //{
+    //    $response = $this->doCurl("POST", "droplets/actions?tag_name=$tag_name", $attributes);
+    //    return $response;
+    //}
 
     public function getAction(array $attributes)
     {
@@ -638,6 +773,9 @@ class DropletActionsClient extends EndpointClient
 
 class ImagesClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -705,6 +843,9 @@ class ImagesClient extends EndpointClient
 
 class ImageActionsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -735,6 +876,9 @@ class ImageActionsClient extends EndpointClient
 
 class LoadBalancersClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -804,6 +948,9 @@ class LoadBalancersClient extends EndpointClient
 
 class SnapshotsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -843,6 +990,9 @@ class SnapshotsClient extends EndpointClient
 
 class SSHKeysClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -902,9 +1052,13 @@ class SSHKeysClient extends EndpointClient
         return $response;
     }
 
+
+    // The API docs use the term "destroy" instead of "delete" for SSH keys.
+    // These functions were created as aliases to avoid potential confusion.
     /**
-     *  The API docs use the term "destroy" instead of "delete" for SSH keys.
-     *  These functions were created as aliases to avoid potential confusion.
+     * @param array $attributes An array containing the SSH key fingerprint
+     *
+     * @return array|boolean
      */
     public function destroyKeyById(array $attributes)
     {
@@ -919,6 +1073,9 @@ class SSHKeysClient extends EndpointClient
 
 class RegionsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -933,6 +1090,9 @@ class RegionsClient extends EndpointClient
 
 class SizesClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -947,6 +1107,9 @@ class SizesClient extends EndpointClient
 
 class FloatingIpsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -981,6 +1144,9 @@ class FloatingIpsClient extends EndpointClient
 
 class FloatingIpActionsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token 
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
@@ -1018,6 +1184,9 @@ class FloatingIpActionsClient extends EndpointClient
 
 class TagsClient extends EndpointClient
 {
+    /**
+     * @param array $config An array containing the API access token
+     */ 
     public function __construct(array $config)
     {
         $this->init($config);
