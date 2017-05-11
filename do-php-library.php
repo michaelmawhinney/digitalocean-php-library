@@ -545,65 +545,10 @@ class DropletsClient extends EndpointClient
         return $response;
     }
 
-    public function deleteDropletById(array $attributes)
-    {
-        $droplet_id = $attributes['droplet_id'];
-        $response = $this->doCurl("DELETE", "droplets/$droplet_id");
-        return $response;
-    }
-
-    public function deleteDropletsByTag(array $attributes)
-    {
-        $tag_name = $attributes['tag_name'];
-        $response = $this->doCurl("DELETE", "droplets?tag_name=$tag_name");
-        return $response;
-    }
-
-    public function getDropletActionsById(array $attributes)
-    {
-        $droplet_id = $attributes['droplet_id'];
-        $response = $this->doCurl("GET", "droplets/$droplet_id/actions");
-        return $response;
-    }
-
-    public function getDropletBackupsById(array $attributes)
-    {
-        $droplet_id = $attributes['droplet_id'];
-        $response = $this->doCurl("GET", "droplets/$droplet_id/backups");
-        return $response;
-    }
-
     public function getDropletById(array $attributes)
     {
         $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("GET", "droplets/$sroplet_id");
-        return $response;
-    }
-
-    public function getDropletByTag(array $attributes)
-    {
-        $tag_name = $attributes['tag_name'];
-        $response = $this->doCurl("GET", "droplets?tag_name=$tag_name");
-        return $response;
-    }
-
-    public function getDropletKernelsById(array $attributes)
-    {
-        $droplet_id = $attributes['droplet_id'];
-        $response = $this->doCurl("GET", "droplets/$droplet_id/kernels");
-        return $response;
-    }
-
-    public function getDropletNeighbors()
-    {
-        $response = $this->doCurl("GET", "reports/droplet_neighbors");
-        return $response;
-    }
-
-    public function getDropletNeighborsById(array $attributes)
-    {
-        $droplet_id = $attributes['droplet_id'];
-        $response = $this->doCurl("GET", "droplets/$droplet_id/neighbors");
         return $response;
     }
 
@@ -620,6 +565,13 @@ class DropletsClient extends EndpointClient
         return $response;
     }
 
+    public function getKernelsByDropletId(array $attributes)
+    {
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("GET", "droplets/$droplet_id/kernels");
+        return $response;
+    }
+
     public function getDropletSnapshotsById(array $attributes)
     {
         $droplet_id = $attributes['droplet_id'];
@@ -627,9 +579,44 @@ class DropletsClient extends EndpointClient
         return $response;
     }
 
-    public function getImages()        
+    public function getBackupsByDropletId(array $attributes)
     {
-        $response = $this->doCurl("GET", "images");
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("GET", "droplets/$droplet_id/backups");
+        return $response;
+    }
+
+    public function getDropletActionsById(array $attributes)
+    {
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("GET", "droplets/$droplet_id/actions");
+        return $response;
+    }
+
+    public function deleteDropletById(array $attributes)
+    {
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("DELETE", "droplets/$droplet_id");
+        return $response;
+    }
+
+    public function deleteDropletsByTag(array $attributes)
+    {
+        $tag_name = $attributes['tag_name'];
+        $response = $this->doCurl("DELETE", "droplets?tag_name=$tag_name");
+        return $response;
+    }
+
+    public function getNeighbors()
+    {
+        $response = $this->doCurl("GET", "reports/droplet_neighbors");
+        return $response;
+    }
+
+    public function getNeighborsByDropletId(array $attributes)
+    {
+        $droplet_id = $attributes['droplet_id'];
+        $response = $this->doCurl("GET", "droplets/$droplet_id/neighbors");
         return $response;
     }
 }

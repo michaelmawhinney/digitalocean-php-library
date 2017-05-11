@@ -52,7 +52,7 @@ $result = $client->Actions->getActionById([
 
 ### method getVolumes
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#list-all-block-storage-volumes>
 
 ```
 $result = $client->->([/* ... */]);
@@ -68,7 +68,7 @@ $result = $client->->([
 
 ### method createVolume
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#create-a-new-block-storage-volume>
 
 ```
 $result = $client->->([/* ... */]);
@@ -84,7 +84,7 @@ $result = $client->->([
 
 ### method getVolumeById
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-block-storage-volume>
 
 ```
 $result = $client->->([/* ... */]);
@@ -100,7 +100,7 @@ $result = $client->->([
 
 ### method getVolumeByName
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-block-storage-volume-by-name>
 
 ```
 $result = $client->->([/* ... */]);
@@ -116,7 +116,7 @@ $result = $client->->([
 
 ### method getSnapshotsByVolumeId
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#list-snapshots-for-a-volume>
 
 ```
 $result = $client->->([/* ... */]);
@@ -132,7 +132,7 @@ $result = $client->->([
 
 ### method createSnapshotByVolumeId
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#create-snapshot-from-a-volume>
 
 ```
 $result = $client->->([/* ... */]);
@@ -148,7 +148,7 @@ $result = $client->->([
 
 ### method deleteVolumeById
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#delete-a-block-storage-volume>
 
 ```
 $result = $client->->([/* ... */]);
@@ -164,7 +164,7 @@ $result = $client->->([
 
 ### method deleteVolumeByName
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#delete-a-block-storage-volume-by-name>
 
 ```
 $result = $client->->([/* ... */]);
@@ -183,7 +183,7 @@ $result = $client->->([
 
 ### method attachVolumeById
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#attach-a-block-storage-volume-to-a-droplet>
 
 ```
 $result = $client->->([/* ... */]);
@@ -199,7 +199,7 @@ $result = $client->->([
 
 ### method attachVolumeByName
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#attach-a-block-storage-volume-to-a-droplet-by-name>
 
 ```
 $result = $client->->([/* ... */]);
@@ -215,7 +215,7 @@ $result = $client->->([
 
 ### method deleteVolumeById
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#remove-a-block-storage-volume-from-a-droplet>
 
 ```
 $result = $client->->([/* ... */]);
@@ -231,7 +231,7 @@ $result = $client->->([
 
 ### method deleteVolumeByName
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#remove-a-block-storage-volume-from-a-droplet-by-name>
 
 ```
 $result = $client->->([/* ... */]);
@@ -247,7 +247,7 @@ $result = $client->->([
 
 ### method resizeVolume
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#resize-a-volume>
 
 ```
 $result = $client->->([/* ... */]);
@@ -263,7 +263,7 @@ $result = $client->->([
 
 ### method getVolumeActions
 
-<>
+https://developers.digitalocean.com/documentation/v2/#list-all-actions-for-a-volume<>
 
 ```
 $result = $client->->([/* ... */]);
@@ -279,23 +279,7 @@ $result = $client->->([
 
 ### method getVolumeAction
 
-<>
-
-```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
-```
-
-
-
-<>
+<https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-volume-action>
 
 ```
 $result = $client->->([/* ... */]);
@@ -313,7 +297,7 @@ $result = $client->->([
 
 ### method createCertificate
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#create-a-new-certificate>
 
 ```
 $result = $client->->([/* ... */]);
@@ -329,7 +313,7 @@ $result = $client->->([
 
 ### method getCertificate
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-certificate>
 
 ```
 $result = $client->->([/* ... */]);
@@ -345,7 +329,7 @@ $result = $client->->([
 
 ### method getCertificates
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#list-all-certificates>
 
 ```
 $result = $client->->([/* ... */]);
@@ -361,7 +345,7 @@ $result = $client->->([
 
 ### method deleteCertificate
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#delete-a-certificate>
 
 ```
 $result = $client->->([/* ... */]);
@@ -380,7 +364,7 @@ $result = $client->->([
 
 ### method getDomains
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#list-all-domains>
 
 ```
 $result = $client->->([/* ... */]);
@@ -396,7 +380,7 @@ $result = $client->->([
 
 ### method createDomain
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#create-a-new-domain>
 
 ```
 $result = $client->->([/* ... */]);
@@ -412,7 +396,7 @@ $result = $client->->([
 
 ### method getDomain
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-domain>
 
 ```
 $result = $client->->([/* ... */]);
@@ -428,7 +412,7 @@ $result = $client->->([
 
 ### method deleteDomain
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#delete-a-domain>
 
 ```
 $result = $client->->([/* ... */]);
@@ -447,7 +431,7 @@ $result = $client->->([
 
 ### method getDomainRecords
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#list-all-domain-records>
 
 ```
 $result = $client->->([/* ... */]);
@@ -463,7 +447,7 @@ $result = $client->->([
 
 ### method createDomainRecord
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#create-a-new-domain-record>
 
 ```
 $result = $client->->([/* ... */]);
@@ -479,7 +463,7 @@ $result = $client->->([
 
 ### method getDomainRecord
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-domain-record>
 
 ```
 $result = $client->->([/* ... */]);
@@ -495,7 +479,7 @@ $result = $client->->([
 
 ### method updateDomainRecord
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#update-a-domain-record>
 
 ```
 $result = $client->->([/* ... */]);
@@ -511,7 +495,7 @@ $result = $client->->([
 
 ### method deleteDomainRecord
 
-<>
+<https://developers.digitalocean.com/documentation/v2/#delete-a-domain-record>
 
 ```
 $result = $client->->([/* ... */]);
@@ -524,77 +508,12 @@ $result = $client->->([
     '' => '<>' // REQUIRED
 ]);
 ```
-
 
 ## class DropletClient
 
 ### method createDroplet
 
-<>
-
-```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
-```
-
-### method deleteDropletById
-
-<>
-
-```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
-```
-
-### method deleteDropletsByTag
-
-<>
-
-```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
-```
-
-### method getDropletActionsById
-
-<>
-
-```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
-```
-
-### method getDropletBackupsById
-
-<>
+<https://developers.digitalocean.com/documentation/v2/#create-a-new-droplet>
 
 ```
 $result = $client->->([/* ... */]);
@@ -609,70 +528,6 @@ $result = $client->->([
 ```
 
 ### method getDropletById
-
-<>
-
-```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
-```
-
-### method getDropletByTag
-
-<>
-
-```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
-```
-
-### method getDropletKernelsById
-
-<>
-
-```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
-```
-
-### method getDropletNeighbors
-
-<>
-
-```
-$result = $client->->([/* ... */]);
-```
-
-#### Parameter Syntax
-
-```
-$result = $client->->([
-    '' => '<>' // REQUIRED
-]);
-```
-
-### method getDropletNeighborsById
 
 <>
 
@@ -720,6 +575,22 @@ $result = $client->->([
 ]);
 ```
 
+### method getKernelsByDropletId
+
+<>
+
+```
+$result = $client->->([/* ... */]);
+```
+
+#### Parameter Syntax
+
+```
+$result = $client->->([
+    '' => '<>' // REQUIRED
+]);
+```
+
 ### method getDropletSnapshotsById
 
 <>
@@ -736,7 +607,7 @@ $result = $client->->([
 ]);
 ```
 
-### method getImages
+### method getBackupsByDropletId
 
 <>
 
@@ -752,6 +623,85 @@ $result = $client->->([
 ]);
 ```
 
+### method getDropletActionsById
+
+<>
+
+```
+$result = $client->->([/* ... */]);
+```
+
+#### Parameter Syntax
+
+```
+$result = $client->->([
+    '' => '<>' // REQUIRED
+]);
+```
+
+### method deleteDropletById
+
+<>
+
+```
+$result = $client->->([/* ... */]);
+```
+
+#### Parameter Syntax
+
+```
+$result = $client->->([
+    '' => '<>' // REQUIRED
+]);
+```
+
+### method deleteDropletsByTag
+
+<>
+
+```
+$result = $client->->([/* ... */]);
+```
+
+#### Parameter Syntax
+
+```
+$result = $client->->([
+    '' => '<>' // REQUIRED
+]);
+```
+
+### method getNeighbors
+
+<>
+
+```
+$result = $client->->([/* ... */]);
+```
+
+#### Parameter Syntax
+
+```
+$result = $client->->([
+    '' => '<>' // REQUIRED
+]);
+```
+
+### method getNeighborsByDropletId
+
+<>
+
+```
+$result = $client->->([/* ... */]);
+```
+
+#### Parameter Syntax
+
+```
+$result = $client->->([
+    '' => '<>' // REQUIRED
+]);
+```
 
 ## class DropletActionsClient
 
