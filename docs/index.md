@@ -10,11 +10,11 @@ $client = new DigitalOceanClient([
 ]);
 ```
 
-## class AccountClient
+# class AccountClient
 
 *This class interacts with the `/v2/account/` endpoint.*
 
-### method getUserInformation
+## method getUserInformation
 
 <https://developers.digitalocean.com/documentation/v2/#get-user-information>
 
@@ -22,9 +22,9 @@ $client = new DigitalOceanClient([
 $result = $client->Account->getUserInformation();
 ```
 
-## class ActionsClient
+# class ActionsClient
 
-### method getActions
+## method getActions
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-actions>
 
@@ -32,7 +32,7 @@ $result = $client->Account->getUserInformation();
 $result = $client->Actions->getActions();
 ```
 
-### method getActionsById
+## method getActionsById
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-action>
 
@@ -48,9 +48,9 @@ $result = $client->Actions->getActionById([
 ]);
 ```
 
-## class BlockStorageClient
+# class BlockStorageClient
 
-### method getVolumes
+## method getVolumes
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-block-storage-volumes>
 
@@ -58,7 +58,7 @@ $result = $client->Actions->getActionById([
 $result = $client->BlockStorage->getVolumes();
 ```
 
-### method createVolume
+## method createVolume
 
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-block-storage-volume>
 
@@ -74,7 +74,7 @@ $result = $client->BlockStorage->createVolume([
 ]);
 ```
 
-### method getVolumeById
+## method getVolumeById
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-block-storage-volume>
 
@@ -90,7 +90,7 @@ $result = $client->BlockStorage->getVolumeById([
 ]);
 ```
 
-### method getVolumeByName
+## method getVolumeByName
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-block-storage-volume-by-name>
 
@@ -106,7 +106,7 @@ $result = $client->BlockStorage->getVolumeByName([
 ]);
 ```
 
-### method getSnapshotsByVolumeId
+## method getSnapshotsByVolumeId
 
 <https://developers.digitalocean.com/documentation/v2/#list-snapshots-for-a-volume>
 
@@ -122,7 +122,7 @@ $result = $client->BlockStorage->getSnapshotsByVolumeId([
 ]);
 ```
 
-### method createSnapshotByVolumeId
+## method createSnapshotByVolumeId
 
 <https://developers.digitalocean.com/documentation/v2/#create-snapshot-from-a-volume>
 
@@ -138,7 +138,7 @@ $result = $client->BlockStorage->createSnapshotByVolumeId([
 ]);
 ```
 
-### method deleteVolumeById
+## method deleteVolumeById
 
 <https://developers.digitalocean.com/documentation/v2/#delete-a-block-storage-volume>
 
@@ -154,7 +154,7 @@ $result = $client->BlockStorage->deleteVolumeById([
 ]);
 ```
 
-### method deleteVolumeByName
+## method deleteVolumeByName
 
 <https://developers.digitalocean.com/documentation/v2/#delete-a-block-storage-volume-by-name>
 
@@ -171,9 +171,9 @@ $result = $client->BlockStorage->deleteVolumeByName([
 ```
 
 
-## class BlockStorageActionsClient
+# class BlockStorageActionsClient
 
-### method attachVolumeById
+## method attachVolumeById
 
 <https://developers.digitalocean.com/documentation/v2/#attach-a-block-storage-volume-to-a-droplet>
 
@@ -189,7 +189,7 @@ $result = $client->BlockStorageActions->attachVolumeById([
 ]);
 ```
 
-### method attachVolumeByName
+## method attachVolumeByName
 
 <https://developers.digitalocean.com/documentation/v2/#attach-a-block-storage-volume-to-a-droplet-by-name>
 
@@ -205,7 +205,7 @@ $result = $client->BlockStorageActions->attachVolumeByName([
 ]);
 ```
 
-### method deleteVolumeById
+## method deleteVolumeById
 
 <https://developers.digitalocean.com/documentation/v2/#remove-a-block-storage-volume-from-a-droplet>
 
@@ -221,7 +221,7 @@ $result = $client->BlockStorageActions->deleteVolumeById([
 ]);
 ```
 
-### method deleteVolumeByName
+## method deleteVolumeByName
 
 <https://developers.digitalocean.com/documentation/v2/#remove-a-block-storage-volume-from-a-droplet-by-name>
 
@@ -237,7 +237,7 @@ $result = $client->BlockStorageActions->deleteVolumeByName([
 ]);
 ```
 
-### method resizeVolume
+## method resizeVolume
 
 <https://developers.digitalocean.com/documentation/v2/#resize-a-volume>
 
@@ -253,7 +253,7 @@ $result = $client->BlockStorageActions->resizeVolume([
 ]);
 ```
 
-### method getVolumeActions
+## method getVolumeActions
 
 https://developers.digitalocean.com/documentation/v2/#list-all-actions-for-a-volume<>
 
@@ -269,7 +269,7 @@ $result = $client->BlockStorageActions->getVolumeActions([
 ]);
 ```
 
-### method getVolumeAction
+## method getVolumeAction
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-volume-action>
 
@@ -285,9 +285,9 @@ $result = $client->BlockStorageActions->getVolumeAction([
 ]);
 ```
 
-## class CertificatesClient
+# class CertificatesClient
 
-### method createCertificate
+## method createCertificate
 
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-certificate>
 
@@ -303,7 +303,7 @@ $result = $client->Certificates->createCertificate([
 ]);
 ```
 
-### method getCertificate
+## method getCertificate
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-certificate>
 
@@ -319,7 +319,7 @@ $result = $client->Certificates->getCertificate([
 ]);
 ```
 
-### method getCertificates
+## method getCertificates
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-certificates>
 
@@ -327,7 +327,7 @@ $result = $client->Certificates->getCertificate([
 $result = $client->Certificates->getCertificates();
 ```
 
-### method deleteCertificate
+## method deleteCertificate
 
 <https://developers.digitalocean.com/documentation/v2/#delete-a-certificate>
 
@@ -344,9 +344,9 @@ $result = $client->Certificates->deleteCertificate([
 ```
 
 
-## class DomainsClient
+# class DomainsClient
 
-### method getDomains
+## method getDomains
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-domains>
 
@@ -354,7 +354,7 @@ $result = $client->Certificates->deleteCertificate([
 $result = $client->Domains->getDomains();
 ```
 
-### method createDomain
+## method createDomain
 
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-domain>
 
@@ -370,7 +370,7 @@ $result = $client->Domains->createDomain([
 ]);
 ```
 
-### method getDomain
+## method getDomain
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-domain>
 
@@ -386,7 +386,7 @@ $result = $client->Domains->getDomain([
 ]);
 ```
 
-### method deleteDomain
+## method deleteDomain
 
 <https://developers.digitalocean.com/documentation/v2/#delete-a-domain>
 
@@ -403,9 +403,9 @@ $result = $client->Domains->deleteDomain([
 ```
 
 
-## class DomainRecordsClient
+# class DomainRecordsClient
 
-### method getDomainRecords
+## method getDomainRecords
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-domain-records>
 
@@ -421,7 +421,7 @@ $result = $client->DomainRecords->getDomainRecords([
 ]);
 ```
 
-### method createDomainRecord
+## method createDomainRecord
 
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-domain-record>
 
@@ -437,7 +437,7 @@ $result = $client->DomainRecords->createDomainRecord([
 ]);
 ```
 
-### method getDomainRecord
+## method getDomainRecord
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-domain-record>
 
@@ -453,7 +453,7 @@ $result = $client->DomainRecords->getDomainRecord([
 ]);
 ```
 
-### method updateDomainRecord
+## method updateDomainRecord
 
 <https://developers.digitalocean.com/documentation/v2/#update-a-domain-record>
 
@@ -469,7 +469,7 @@ $result = $client->DomainRecords->updateDomainRecord([
 ]);
 ```
 
-### method deleteDomainRecord
+## method deleteDomainRecord
 
 <https://developers.digitalocean.com/documentation/v2/#delete-a-domain-record>
 
@@ -485,9 +485,9 @@ $result = $client->DomainRecords->deleteDomainRecord([
 ]);
 ```
 
-## class DropletsClient
+# class DropletsClient
 
-### method createDroplet
+## method createDroplet
 
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-droplet>
 
@@ -503,7 +503,7 @@ $result = $client->Droplets->createDroplet([
 ]);
 ```
 
-### method getDropletById
+## method getDropletById
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-droplet-by-id>
 
@@ -519,7 +519,7 @@ $result = $client->Droplets->getDropletById([
 ]);
 ```
 
-### method getDroplets
+## method getDroplets
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-droplets>
 
@@ -527,7 +527,7 @@ $result = $client->Droplets->getDropletById([
 $result = $client->Droplets->getDroplets();
 ```
 
-### method getDropletsByTag
+## method getDropletsByTag
 
 <https://developers.digitalocean.com/documentation/v2/#listing-droplets-by-tag>
 
@@ -543,7 +543,7 @@ $result = $client->Droplets->getDropletsByTag([
 ]);
 ```
 
-### method getKernelsByDropletId
+## method getKernelsByDropletId
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-available-kernels-for-a-droplet>
 
@@ -559,7 +559,7 @@ $result = $client->Droplets->getKernelsByDropletId([
 ]);
 ```
 
-### method getSnapshotsByDropletId
+## method getSnapshotsByDropletId
 
 <https://developers.digitalocean.com/documentation/v2/#list-snapshots-for-a-droplet>
 
@@ -575,7 +575,7 @@ $result = $client->Droplets->getSnapshotsByDropletId([
 ]);
 ```
 
-### method getBackupsByDropletId
+## method getBackupsByDropletId
 
 <https://developers.digitalocean.com/documentation/v2/#list-backups-for-a-droplet>
 
@@ -591,7 +591,7 @@ $result = $client->Droplets->getBackupsByDropletId([
 ]);
 ```
 
-### method getActionsByDropletId
+## method getActionsByDropletId
 
 <https://developers.digitalocean.com/documentation/v2/#list-actions-for-a-droplet>
 
@@ -607,7 +607,7 @@ $result = $client->Droplets->getActionsByDropletId([
 ]);
 ```
 
-### method deleteDropletById
+## method deleteDropletById
 
 <https://developers.digitalocean.com/documentation/v2/#delete-a-droplet>
 
@@ -623,7 +623,7 @@ $result = $client->Droplets->deleteDropletById([
 ]);
 ```
 
-### method deleteDropletsByTag
+## method deleteDropletsByTag
 
 <https://developers.digitalocean.com/documentation/v2/#deleting-droplets-by-tag>
 
@@ -639,7 +639,7 @@ $result = $client->Droplets->deleteDropletsByTag([
 ]);
 ```
 
-### method getNeighborsByDropletId
+## method getNeighborsByDropletId
 
 <https://developers.digitalocean.com/documentation/v2/#list-neighbors-for-a-droplet>
 
@@ -655,7 +655,7 @@ $result = $client->Droplets->getNeighborsByDropletId([
 ]);
 ```
 
-### method getNeighbors
+## method getNeighbors
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-droplet-neighbors>
 
@@ -663,9 +663,9 @@ $result = $client->Droplets->getNeighborsByDropletId([
 $result = $client->Droplets->getNeighbors();
 ```
 
-## class DropletActionsClient
+# class DropletActionsClient
 
-### method enableBackups
+## method enableBackups
 
 <https://developers.digitalocean.com/documentation/v2/#enable-backups>
 
@@ -681,7 +681,7 @@ $result = $client->DropletActions->enableBackups([
 ]);
 ```
 
-### method disableBackups
+## method disableBackups
 
 <https://developers.digitalocean.com/documentation/v2/#disable-backups>
 
@@ -697,7 +697,7 @@ $result = $client->DropletActions->disableBackups([
 ]);
 ```
 
-### method reboot
+## method reboot
 
 <https://developers.digitalocean.com/documentation/v2/#reboot-a-droplet>
 
@@ -713,7 +713,7 @@ $result = $client->DropletActions->reboot([
 ]);
 ```
 
-### method powerCycle
+## method powerCycle
 
 <https://developers.digitalocean.com/documentation/v2/#power-cycle-a-droplet>
 
@@ -729,7 +729,7 @@ $result = $client->DropletActions->powerCycle([
 ]);
 ```
 
-### method shutdown
+## method shutdown
 
 <https://developers.digitalocean.com/documentation/v2/#shutdown-a-droplet>
 
@@ -745,7 +745,7 @@ $result = $client->DropletActions->shutdown([
 ]);
 ```
 
-### method powerOff
+## method powerOff
 
 <https://developers.digitalocean.com/documentation/v2/#power-off-a-droplet>
 
@@ -761,7 +761,7 @@ $result = $client->DropletActions->powerOff([
 ]);
 ```
 
-### method powerOn
+## method powerOn
 
 <https://developers.digitalocean.com/documentation/v2/#power-on-a-droplet>
 
@@ -777,7 +777,7 @@ $result = $client->DropletActions->powerOn([
 ]);
 ```
 
-### method restore
+## method restore
 
 <https://developers.digitalocean.com/documentation/v2/#restore-a-droplet>
 
@@ -793,7 +793,7 @@ $result = $client->DropletActions->restore([
 ]);
 ```
 
-### method resetPassword
+## method resetPassword
 
 <https://developers.digitalocean.com/documentation/v2/#password-reset-a-droplet>
 
@@ -809,7 +809,7 @@ $result = $client->DropletActions->resetPassword([
 ]);
 ```
 
-### method resize
+## method resize
 
 <https://developers.digitalocean.com/documentation/v2/#resize-a-droplet>
 
@@ -825,7 +825,7 @@ $result = $client->DropletActions->resize([
 ]);
 ```
 
-### method rebuild
+## method rebuild
 
 <https://developers.digitalocean.com/documentation/v2/#rebuild-a-droplet>
 
@@ -841,7 +841,7 @@ $result = $client->DropletActions->rebuild([
 ]);
 ```
 
-### method rename
+## method rename
 
 <https://developers.digitalocean.com/documentation/v2/#rename-a-droplet>
 
@@ -857,7 +857,7 @@ $result = $client->DropletActions->rename([
 ]);
 ```
 
-### method changeKernel
+## method changeKernel
 
 <https://developers.digitalocean.com/documentation/v2/#change-the-kernel>
 
@@ -873,7 +873,7 @@ $result = $client->DropletActions->changeKernel([
 ]);
 ```
 
-### method enableIPv6
+## method enableIPv6
 
 <https://developers.digitalocean.com/documentation/v2/#enable-ipv6>
 
@@ -889,7 +889,7 @@ $result = $client->DropletActions->enableIPv6([
 ]);
 ```
 
-### method enablePrivateNetworking
+## method enablePrivateNetworking
 
 <https://developers.digitalocean.com/documentation/v2/#enable-private-networking>
 
@@ -905,7 +905,7 @@ $result = $client->DropletActions->enablePrivateNetworking([
 ]);
 ```
 
-### method createSnapshot
+## method createSnapshot
 
 <https://developers.digitalocean.com/documentation/v2/#snapshot-a-droplet>
 
@@ -937,7 +937,7 @@ $result = $client->DropletActions->doActionByTag([
 ]);
 ```
 
-### method getAction
+## method getAction
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-a-droplet-action>
 
@@ -954,9 +954,9 @@ $result = $client->DropletActions->getAction([
 ```
 
 
-## class ImagesClient
+# class ImagesClient
 
-### method getImages
+## method getImages
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-images>
 
@@ -964,7 +964,7 @@ $result = $client->DropletActions->getAction([
 $result = $client->Images->getImages();
 ```
 
-### method getDistributionImages
+## method getDistributionImages
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-distribution-images>
 
@@ -972,7 +972,7 @@ $result = $client->Images->getImages();
 $result = $client->Images->getDistributionImages();
 ```
 
-### method getApplicationImages
+## method getApplicationImages
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-application-images>
 
@@ -980,7 +980,7 @@ $result = $client->Images->getDistributionImages();
 $result = $client->Images->getApplicationImages();
 ```
 
-### method getUserImages
+## method getUserImages
 
 <https://developers.digitalocean.com/documentation/v2/#list-a-user-s-images>
 
@@ -988,7 +988,7 @@ $result = $client->Images->getApplicationImages();
 $result = $client->Images->getUserImages();
 ```
 
-### method getActions
+## method getActions
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-actions-for-an-image>
 
@@ -1004,7 +1004,7 @@ $result = $client->Images->getActions([
 ]);
 ```
 
-### method getImageById
+## method getImageById
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-image-by-id>
 
@@ -1020,7 +1020,7 @@ $result = $client->Images->getImageById([
 ]);
 ```
 
-### method getImageBySlug
+## method getImageBySlug
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-image-by-slug>
 
@@ -1036,7 +1036,7 @@ $result = $client->Images->getImageBySlug([
 ]);
 ```
 
-### method updateImage
+## method updateImage
 
 <https://developers.digitalocean.com/documentation/v2/#update-an-image>
 
@@ -1052,7 +1052,7 @@ $result = $client->Images->updateImage([
 ]);
 ```
 
-### method deleteImage
+## method deleteImage
 
 <https://developers.digitalocean.com/documentation/v2/#delete-an-image>
 
@@ -1069,9 +1069,9 @@ $result = $client->Images->deleteImage([
 ```
 
 
-## class ImageActionsClient
+# class ImageActionsClient
 
-### method transferImage
+## method transferImage
 
 <https://developers.digitalocean.com/documentation/v2/#transfer-an-image>
 
@@ -1087,7 +1087,7 @@ $result = $client->ImageActions->transferImage([
 ]);
 ```
 
-### method convertImageToSnapshot
+## method convertImageToSnapshot
 
 <https://developers.digitalocean.com/documentation/v2/#convert-an-image-to-a-snapshot>
 
@@ -1103,7 +1103,7 @@ $result = $client->ImageActions->convertImageToSnapshot([
 ]);
 ```
 
-### method getAction
+## method getAction
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-image-action>
 
@@ -1120,9 +1120,9 @@ $result = $client->ImageActions->getAction([
 ```
 
 
-## class LoadBalancersClient
+# class LoadBalancersClient
 
-### method createLoadBalancer
+## method createLoadBalancer
 
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-load-balancer>
 
@@ -1138,7 +1138,7 @@ $result = $client->LoadBalancers->createLoadBalancer([
 ]);
 ```
 
-### method getLoadBalancer
+## method getLoadBalancer
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-load-balancer>
 
@@ -1154,7 +1154,7 @@ $result = $client->LoadBalancers->getLoadBalancer([
 ]);
 ```
 
-### method getLoadBalancers
+## method getLoadBalancers
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-load-balancers>
 
@@ -1162,7 +1162,7 @@ $result = $client->LoadBalancers->getLoadBalancer([
 $result = $client->LoadBalancers->getLoadBalancers();
 ```
 
-### method updateLoadBalancer
+## method updateLoadBalancer
 
 <https://developers.digitalocean.com/documentation/v2/#update-a-load-balancer>
 
@@ -1178,7 +1178,7 @@ $result = $client->LoadBalancers->updateLoadBalancer([
 ]);
 ```
 
-### method deleteLoadBalancer
+## method deleteLoadBalancer
 
 <https://developers.digitalocean.com/documentation/v2/#delete-a-load-balancer>
 
@@ -1194,7 +1194,7 @@ $result = $client->LoadBalancers->deleteLoadBalancer([
 ]);
 ```
 
-### method addDroplets
+## method addDroplets
 
 <https://developers.digitalocean.com/documentation/v2/#add-droplets-to-a-load-balancer>
 
@@ -1210,7 +1210,7 @@ $result = $client->LoadBalancers->addDroplets([
 ]);
 ```
 
-### method removeDroplets
+## method removeDroplets
 
 <https://developers.digitalocean.com/documentation/v2/#remove-droplets-from-a-load-balancer>
 
@@ -1226,7 +1226,7 @@ $result = $client->LoadBalancers->removeDroplets([
 ]);
 ```
 
-### method addForwardingRules
+## method addForwardingRules
 
 <https://developers.digitalocean.com/documentation/v2/#add-forwarding-rules-to-a-load-balancer>
 
@@ -1242,7 +1242,7 @@ $result = $client->LoadBalancers->addForwardingRules([
 ]);
 ```
 
-### method removeForwardingRules
+## method removeForwardingRules
 
 <https://developers.digitalocean.com/documentation/v2/#remove-forwarding-rules-from-a-load-balancer>
 
@@ -1259,9 +1259,9 @@ $result = $client->LoadBalancers->removeForwardingRules([
 ```
 
 
-## class SnapshotsClient
+# class SnapshotsClient
 
-### method getSnapshots
+## method getSnapshots
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-snapshots>
 
@@ -1269,7 +1269,7 @@ $result = $client->LoadBalancers->removeForwardingRules([
 $result = $client->Snapshots->getSnapshots();
 ```
 
-### method getDropletSnapshots
+## method getDropletSnapshots
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-droplet-snapshots>
 
@@ -1277,7 +1277,7 @@ $result = $client->Snapshots->getSnapshots();
 $result = $client->Snapshots->getDropletSnapshots();
 ```
 
-### method getVolumeSnapshots
+## method getVolumeSnapshots
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-volume-snapshots>
 
@@ -1285,7 +1285,7 @@ $result = $client->Snapshots->getDropletSnapshots();
 $result = $client->Snapshots->getVolumeSnapshots();
 ```
 
-### method getSnapshotById
+## method getSnapshotById
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-snapshot-by-id>
 
@@ -1301,7 +1301,7 @@ $result = $client->Snapshots->getSnapshotById([
 ]);
 ```
 
-### method deleteSnapshot
+## method deleteSnapshot
 
 <https://developers.digitalocean.com/documentation/v2/#delete-a-snapshot>
 
@@ -1318,9 +1318,9 @@ $result = $client->Snapshots->deleteSnapshot([
 ```
 
 
-## class SSHKeysClient
+# class SSHKeysClient
 
-### method getKeys
+## method getKeys
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-keys>
 
@@ -1328,7 +1328,7 @@ $result = $client->Snapshots->deleteSnapshot([
 $result = $client->SSHKeys->getKeys();
 ```
 
-### method createKey
+## method createKey
 
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-key>
 
@@ -1344,7 +1344,7 @@ $result = $client->SSHKeys->createKey([
 ]);
 ```
 
-### method getKeyById
+## method getKeyById
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-key>
 
@@ -1360,7 +1360,7 @@ $result = $client->SSHKeys->getKeyById([
 ]);
 ```
 
-### method getKeyByFingerprint
+## method getKeyByFingerprint
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-key>
 
@@ -1376,7 +1376,7 @@ $result = $client->SSHKeys->getKeyByFingerprint([
 ]);
 ```
 
-### method updateKeyById
+## method updateKeyById
 
 <https://developers.digitalocean.com/documentation/v2/#update-a-key>
 
@@ -1392,7 +1392,7 @@ $result = $client->SSHKeys->updateKeyById([
 ]);
 ```
 
-### method updateKeyByFingerprint
+## method updateKeyByFingerprint
 
 <https://developers.digitalocean.com/documentation/v2/#update-a-key>
 
@@ -1408,7 +1408,7 @@ $result = $client->SSHKeys->updateKeyByFingerprint([
 ]);
 ```
 
-### method deleteKeyById (destroyKeyById))
+## method deleteKeyById (destroyKeyById))
 
 <https://developers.digitalocean.com/documentation/v2/#destroy-a-key>
 
@@ -1424,7 +1424,7 @@ $result = $client->SSHKeys->deleteKeyById([
 ]);
 ```
 
-### method deleteKeyByFingerprint (destroyKeyByFingerprint)
+## method deleteKeyByFingerprint (destroyKeyByFingerprint)
 
 <https://developers.digitalocean.com/documentation/v2/#destroy-a-key>
 
@@ -1441,9 +1441,9 @@ $result = $client->SSHKeys->deleteKeyByFingerprint([
 ```
 
 
-## class RegionsClient
+# class RegionsClient
 
-### method getRegions
+## method getRegions
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-regions>
 
@@ -1451,9 +1451,9 @@ $result = $client->SSHKeys->deleteKeyByFingerprint([
 $result = $client->Regions->getRegions();
 ```
 
-## class SizesClient
+# class SizesClient
 
-### method getSizes
+## method getSizes
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-sizes>
 
@@ -1461,9 +1461,9 @@ $result = $client->Regions->getRegions();
 $result = $client->Sizes->getSizes();
 ```
 
-## class FloatingIpsClient
+# class FloatingIpsClient
 
-### method getFloatingIps
+## method getFloatingIps
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-floating-ips>
 
@@ -1471,7 +1471,7 @@ $result = $client->Sizes->getSizes();
 $result = $client->FloatingIps->getFloatingIps();
 ```
 
-### method createFloatingIp
+## method createFloatingIp
 
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-floating-ip-assigned-to-a-droplet>
 
@@ -1487,7 +1487,7 @@ $result = $client->FloatingIps->createFloatingIp([
 ]);
 ```
 
-### method getFloatingIp
+## method getFloatingIp
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-floating-ip>
 
@@ -1503,7 +1503,7 @@ $result = $client->FloatingIps->getFloatingIp([
 ]);
 ```
 
-### method deleteFloatingIp
+## method deleteFloatingIp
 
 <https://developers.digitalocean.com/documentation/v2/#delete-a-floating-ips>
 
@@ -1520,9 +1520,9 @@ $result = $client->FloatingIps->deleteFloatingIp([
 ```
 
 
-## class FloatingIpActionsClient
+# class FloatingIpActionsClient
 
-### method assignFloatingIp
+## method assignFloatingIp
 
 <https://developers.digitalocean.com/documentation/v2/#assign-a-floating-ip-to-a-droplet>
 
@@ -1538,7 +1538,7 @@ $result = $client->FloatingIpActions->assignFloatingIp([
 ]);
 ```
 
-### method unassignFloatingIp
+## method unassignFloatingIp
 
 <https://developers.digitalocean.com/documentation/v2/#unassign-a-floating-ip>
 
@@ -1554,7 +1554,7 @@ $result = $client->FloatingIpActions->unassignFloatingIp([
 ]);
 ```
 
-### method getActions
+## method getActions
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-actions-for-a-floating-ip>
 
@@ -1570,7 +1570,7 @@ $result = $client->FloatingIpActions->getActions([
 ]);
 ```
 
-### method getActionById
+## method getActionById
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-floating-ip-action>
 
@@ -1587,9 +1587,9 @@ $result = $client->FloatingIpActions->getActionById([
 ```
 
 
-## class TagsClient
+# class TagsClient
 
-### method createTag
+## method createTag
 
 <https://developers.digitalocean.com/documentation/v2/#create-a-new-tag>
 
@@ -1605,7 +1605,7 @@ $result = $client->Tags->createTag([
 ]);
 ```
 
-### method getTag
+## method getTag
 
 <https://developers.digitalocean.com/documentation/v2/#retrieve-a-tag>
 
@@ -1621,7 +1621,7 @@ $result = $client->Tags->getTag([
 ]);
 ```
 
-### method getTags
+## method getTags
 
 <https://developers.digitalocean.com/documentation/v2/#list-all-tags>
 
@@ -1629,7 +1629,7 @@ $result = $client->Tags->getTag([
 $result = $client->Tags->getTags();
 ```
 
-### method tagResource
+## method tagResource
 
 <https://developers.digitalocean.com/documentation/v2/#tag-a-resource>
 
@@ -1645,7 +1645,7 @@ $result = $client->Tags->tagResource([
 ]);
 ```
 
-### method untagResource
+## method untagResource
 
 <https://developers.digitalocean.com/documentation/v2/#untag-a-resource>
 
@@ -1661,7 +1661,7 @@ $result = $client->Tags->untagResource([
 ]);
 ```
 
-### method deleteTag
+## method deleteTag
 
 <https://developers.digitalocean.com/documentation/v2/#delete-a-tag>
 
