@@ -572,7 +572,7 @@ class DropletsClient extends EndpointClient
         return $response;
     }
 
-    public function getDropletSnapshotsById(array $attributes)
+    public function getSnapshotsByDropletId(array $attributes)
     {
         $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("GET", "droplets/$droplet_id/snapshots");
@@ -586,7 +586,7 @@ class DropletsClient extends EndpointClient
         return $response;
     }
 
-    public function getDropletActionsById(array $attributes)
+    public function getActionsByDropletId(array $attributes)
     {
         $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("GET", "droplets/$droplet_id/actions");
@@ -607,16 +607,16 @@ class DropletsClient extends EndpointClient
         return $response;
     }
 
-    public function getNeighbors()
-    {
-        $response = $this->doCurl("GET", "reports/droplet_neighbors");
-        return $response;
-    }
-
     public function getNeighborsByDropletId(array $attributes)
     {
         $droplet_id = $attributes['droplet_id'];
         $response = $this->doCurl("GET", "droplets/$droplet_id/neighbors");
+        return $response;
+    }
+
+    public function getNeighbors()
+    {
+        $response = $this->doCurl("GET", "reports/droplet_neighbors");
         return $response;
     }
 }
@@ -949,7 +949,7 @@ class SnapshotsClient extends EndpointClient
         return $response;
     }
 
-    public function getDropletSnapshot()
+    public function getDropletSnapshots()
     {
         $response = $this->doCurl("GET", "snapshots?resource_type=droplet");
         return $response;
