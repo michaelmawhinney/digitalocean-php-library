@@ -970,6 +970,7 @@ class SnapshotsClient extends EndpointClient
 
     public function deleteSnapshot(array $attributes)
     {
+        $snapshot_id = $attributes['snapshot_id'];
         $response = $this->doCurl("DELETE", "snapshots/$snapshot_id");
         return $response;
     }
