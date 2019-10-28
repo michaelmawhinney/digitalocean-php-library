@@ -548,7 +548,7 @@ class DropletsClient extends EndpointClient
     public function getDropletById(array $attributes)
     {
         $droplet_id = $attributes['droplet_id'];
-        $response = $this->doCurl("GET", "droplets/$sroplet_id");
+        $response = $this->doCurl("GET", "droplets/$droplet_id");
         return $response;
     }
 
@@ -970,6 +970,7 @@ class SnapshotsClient extends EndpointClient
 
     public function deleteSnapshot(array $attributes)
     {
+        $snapshot_id = $attributes['snapshot_id'];
         $response = $this->doCurl("DELETE", "snapshots/$snapshot_id");
         return $response;
     }
