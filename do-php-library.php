@@ -548,7 +548,7 @@ class DropletsClient extends EndpointClient
     public function getDropletById(array $attributes)
     {
         $droplet_id = $attributes['droplet_id'];
-        $response = $this->doCurl("GET", "droplets/$sroplet_id");
+        $response = $this->doCurl("GET", "droplets/$droplet_id");
         return $response;
     }
 
